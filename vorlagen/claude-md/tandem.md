@@ -41,7 +41,8 @@ Delegation spart.
 Codex sieht den Gesprächsverlauf nicht. Der Auftrag muss allein stehen:
 konkrete IDs und Pfade, eine ausdrückliche Verbotsliste („diese Dateien
 nicht anfassen"), ein vorgegebenes Ausgabeformat. Die Hausregeln, die er
-ohnehin liest, stehen in `~/.codex-tandem/AGENTS.md`.
+ohnehin liest, stehen in `~/.codex/AGENTS.md` (der normale, von `codex
+login` genutzte Ort — `codex-do` setzt bewusst kein eigenes CODEX_HOME).
 
 ## Gegenprüfen und Transparenz
 

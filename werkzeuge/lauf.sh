@@ -13,17 +13,39 @@
 # Beispiel:
 #   lauf.sh graphify-karte -- graphify update .
 #
-# <name> wird zum Logdateinamen und zur Bezeichnung in der Laufanzeige.
+# <name> wird zum Logdateinamen und zur Bezeichnung in der Laufanzeige und
+# darf nur aus Buchstaben, Ziffern, Punkt, Unterstrich und Bindestrich
+# bestehen ([A-Za-z0-9._-]+) - sonst koennte ein Name mit z.B. "../" Logs
+# ausserhalb von betrieb/logs anlegen oder ueberschreiben.
+#
+# Optional: die Umgebungsvariable ARBEITSORDNER (voller Pfad) wechselt vor
+# dem Start des Befehls dorthin. Unter launchd setzt idealerweise schon die
+# plist-Vorlage WorkingDirectory - diese Variable ist fuer Aufrufe ausserhalb
+# von launchd, z.B. zum Testen von Hand.
 
 set -uo pipefail
 
-if [ "${2:-}" != "--" ] || [ -z "${1:-}" ]; then
+if [ -z "${1:-}" ] || [ "${2:-}" != "--" ] || [ "$#" -lt 3 ]; then
   echo "Aufruf: lauf.sh <name> -- <befehl…>" >&2
   exit 2
 fi
 
 NAME="$1"
 shift 2
+
+case "$NAME" in
+  *[!A-Za-z0-9._-]*)
+    echo "lauf.sh: ungueltiger Name '$NAME', erlaubt ist nur [A-Za-z0-9._-]+" >&2
+    exit 2
+    ;;
+esac
+
+if [ -n "${ARBEITSORDNER:-}" ]; then
+  cd "$ARBEITSORDNER" || {
+    echo "lauf.sh: ARBEITSORDNER '$ARBEITSORDNER' nicht erreichbar" >&2
+    exit 2
+  }
+fi
 
 export PATH="/opt/homebrew/bin:$HOME/.local/bin:/usr/bin:/bin:${PATH:-}"
 

@@ -2,16 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
   Vorlage fuer einen launchd-Job, der ~/maschinenraum/werkzeuge/lauf.sh
-  aufruft. Platzhalter (mit sed oder von Hand ersetzen):
-    {{NAME}}     Label des Jobs, z.B. com.maschinenraum.mein-job
-    {{BEFEHL}}   der eigentliche Befehl, z.B. graphify update .
-    {{STUNDE}}   0-23
-    {{MINUTE}}   0-59
-    {{HOME}}     dein Heimatverzeichnis, volle Pfadangabe (kein ~)
+  aufruft. Diese Datei ist nur zum Nachlesen der Struktur. Die echte plist
+  wird bei der Einrichtung IMMER per Python (plistlib) erzeugt, nie durch
+  Text-Ersetzung in dieser XML-Datei - siehe einrichten/mr4-launchd.md.
+  Textersetzung waere ein bekannter Fehler: ein Befehl mit "&" (z.B. eine
+  URL mit mehreren Parametern) macht rohes XML sofort ungueltig.
+
+  Deshalb steht der eigentliche Befehl auch nicht in der plist, sondern in
+  einem eigenen, ausfuehrbaren Jobskript
+  betrieb/jobs/{{NAME}}.sh - die plist ruft nur noch
+  lauf.sh {{NAME}} -- <pfad zum jobskript> auf, alles als einzelne
+  ProgramArguments-Eintraege, ganz ohne Shell und ganz ohne
+  Escaping-Probleme.
+
+  Werte (siehe einrichten/mr4-launchd.md):
+    {{NAME}}           Label des Jobs, z.B. com.maschinenraum.mein-job -
+                        nur [A-Za-z0-9._-]+, wird auch der Dateiname des
+                        Jobskripts und der Logdatei
+    {{JOBSKRIPT}}       voller Pfad zu betrieb/jobs/{{NAME}}.sh
+    {{ARBEITSORDNER}}   voller Pfad, in dem der Job arbeiten soll
+                        (WorkingDirectory) - z.B. das Projekt, in dem der
+                        Befehl relative Pfade wie "graphify update ." nutzt
+    {{STUNDE}}          0-23
+    {{MINUTE}}          0-59
+    {{HOME}}            dein Heimatverzeichnis, volle Pfadangabe (kein ~)
 
   Nie unter ~/Desktop oder ~/Documents ablegen - dort verweigert macOS
   geplanten Laeufen still den Zugriff. Richtiger Ort:
   ~/Library/LaunchAgents/{{NAME}}.plist
+
+  Der Ordner fuer StandardOutPath/StandardErrorPath (betrieb/logs) muss VOR
+  dem launchctl bootstrap existieren, sonst kann launchd die Log-Datei
+  nicht anlegen.
 -->
 <plist version="1.0">
 <dict>
@@ -19,10 +41,13 @@
 	<string>{{NAME}}</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/bin/bash</string>
-		<string>-lc</string>
-		<string>{{HOME}}/maschinenraum/werkzeuge/lauf.sh {{NAME}} -- {{BEFEHL}}</string>
+		<string>{{HOME}}/maschinenraum/werkzeuge/lauf.sh</string>
+		<string>{{NAME}}</string>
+		<string>--</string>
+		<string>{{JOBSKRIPT}}</string>
 	</array>
+	<key>WorkingDirectory</key>
+	<string>{{ARBEITSORDNER}}</string>
 	<key>EnvironmentVariables</key>
 	<dict>
 		<key>PATH</key>

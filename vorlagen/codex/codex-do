@@ -5,9 +5,16 @@
 #   …Auftrag…
 #   EOF
 #
-# Der Auftrag kommt ueber stdin. Das volle Transkript landet in
-# ~/.codex-tandem/logs/, auf stdout kommen nur die letzten kurzen Zeilen -
-# Codex' Rohausgabe ist sechsstellig gross und wuerde jeden Kontext sprengen.
+# Der Auftrag kommt ueber stdin. codex-do setzt CODEX_HOME NICHT: es nutzt
+# dieselbe Anmeldung und Konfiguration wie ein normales `codex login` im
+# Terminal (Standardort ~/.codex). Waere hier ein eigenes CODEX_HOME
+# gesetzt, wuerde Codex unter einem Konto suchen, unter dem nie eingeloggt
+# wurde - die CLI sagt selbst: "auth still uses CODEX_HOME". Die
+# Hausregeln, die Codex bei jedem Aufruf automatisch liest, stehen deshalb
+# ganz regulaer in ~/.codex/AGENTS.md. Nur das volle Rohprotokoll jedes
+# Laufs landet in einem eigenen Ordner: ~/.codex-tandem/logs/. Auf stdout
+# kommen nur die letzten kurzen Zeilen - Codex' Rohausgabe ist sechsstellig
+# gross und wuerde jeden Kontext sprengen.
 #
 # Stellschrauben:
 #   CODEX_SANDBOX   read-only | workspace-write | danger-full-access  (Standard: danger-full-access)
@@ -21,7 +28,12 @@ LOG_DIR="$HOME/.codex-tandem/logs"
 mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/$(date +%Y%m%d-%H%M%S)-$$.log"
 
-args=(exec -s "${CODEX_SANDBOX:-danger-full-access}" --skip-git-repo-check)
+# Die Abschlussantwort holen wir ueber die stabile Codex-Option
+# --output-last-message statt sie aus dem Transkript herauszuraten.
+ANTWORT_DATEI="$(mktemp "${TMPDIR:-/tmp}/codex-do-antwort.XXXXXX")"
+trap 'rm -f "$ANTWORT_DATEI"' EXIT
+
+args=(exec -s "${CODEX_SANDBOX:-danger-full-access}" --skip-git-repo-check -o "$ANTWORT_DATEI")
 [ -n "${CODEX_MODEL:-}" ] && args+=(-m "$CODEX_MODEL")
 if [ -n "${CODEX_IMAGES:-}" ]; then
   for img in $CODEX_IMAGES; do
@@ -31,19 +43,24 @@ if [ -n "${CODEX_IMAGES:-}" ]; then
 fi
 args+=(-)
 
-CODEX_HOME="$HOME/.codex-tandem" codex "${args[@]}" > "$LOG" 2>&1
+codex "${args[@]}" > "$LOG" 2>&1
 status=$?
 
-# Codex' Transkript wiederholt den ganzen Auftrag und jeden Werkzeugaufruf.
-# Interessant ist nur, was nach der Zeile "tokens used" steht - das ist die
-# abschliessende Antwort. Fehlt sie, ist etwas schiefgegangen: dann die
-# letzten lesbaren Zeilen zeigen, damit der Grund sichtbar wird.
-tokens=$(awk '/^tokens used$/{getline t} END{print t}' "$LOG")
+ANTWORT=""
+[ -s "$ANTWORT_DATEI" ] && ANTWORT="$(cat "$ANTWORT_DATEI")"
 
-if [ -n "$tokens" ]; then
-  awk '/^tokens used$/{f=1; getline; next} f' "$LOG" \
-    | cut -c1-300 | tail -"${CODEX_TAIL:-25}"
-  echo "--- codex-do: $tokens Tokens · exit $status · $LOG"
+# Tokenverbrauch ist nur ein Best-Effort-Fund im Transkript (Marker "tokens
+# used", nicht dokumentiert und nicht garantiert) - fehlt er, wird er
+# einfach weggelassen statt einen ganzen Lauf als gescheitert zu melden.
+TOKENS="$(awk '/^tokens used$/{getline t; print t; exit}' "$LOG" 2>/dev/null || true)"
+
+if [ -n "$ANTWORT" ]; then
+  echo "$ANTWORT" | cut -c1-300 | tail -"${CODEX_TAIL:-25}"
+  if [ -n "$TOKENS" ]; then
+    echo "--- codex-do: $TOKENS Tokens · exit $status · $LOG"
+  else
+    echo "--- codex-do: exit $status · $LOG"
+  fi
 else
   echo "--- codex-do: keine Antwort, exit $status. Letzte Zeilen:"
   awk 'length($0) < 400' "$LOG" \

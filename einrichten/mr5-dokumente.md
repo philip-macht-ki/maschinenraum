@@ -29,13 +29,20 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. Sag mir vorher, dass dieser Lauf einmalig spürbar Kontingent kostet, weil
+1. Prüfe nur lesend mit `graphify extract --help`, welche Backends die
+   installierte Version tatsächlich unterstützt (`--backend`) und welche
+   Authentifizierung sie jeweils braucht. Verlass dich nicht auf eine feste
+   Annahme, das ändert sich zwischen Versionen.
+
+2. Sag mir vorher, dass dieser Lauf einmalig spürbar Kontingent kostet, weil
    er Inhalte liest statt nur Code-Struktur. Frag um mein Ja, bevor du
    anfängst.
 
-2. Nach meinem Ja: graphify extract . --backend claude-cli in diesem Ordner.
+3. Nach meinem Ja: graphify extract . --backend claude in diesem Ordner
+   (Backend "claude", nicht "claude-cli" - der Name aus Schritt 1 sticht
+   diese Vorgabe, falls die installierte Version einen anderen Namen zeigt).
 
-3. Führe die Abnahme aus.
+4. Führe die Abnahme aus.
 
 ## Verbotsliste
 

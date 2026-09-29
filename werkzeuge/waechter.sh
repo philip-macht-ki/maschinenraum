@@ -16,6 +16,16 @@
 #                                werden per launchctl list auf ihren letzten
 #                                Exitcode geprueft
 #
+# Jede Zeile in waechter.conf wird geprueft: eine falsche Feldanzahl, eine
+# nicht-numerische Stundenzahl oder eine unbekannte Direktive wird selbst
+# zu einem Befund statt das Skript abzubrechen (set -u wuerde das sonst
+# stillschweigend tun).
+#
+# Zeitstempel in der Laufanzeige stehen immer im Format "JJJJ-MM-TT SS:MM"
+# (so schreibt lauf.sh sie). Laesst sich ein Zeitstempel nicht so lesen,
+# wird das selbst zu einem Befund statt den Takt stillschweigend zu
+# uebergehen.
+#
 # MR_TEST=1 schreibt die Mitteilung nur ins Protokoll statt sie wirklich
 # auszuloesen: so testest du den Waechter, ohne den Bildschirm zu bemuehen.
 
@@ -25,31 +35,56 @@ HIER="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EIGENE_ANZEIGE="$HIER/betrieb/laufanzeige.md"
 CONF="$HIER/betrieb/waechter.conf"
 BEFUND="$HIER/betrieb/waechter.md"
-mkdir -p "$HIER/betrieb"
+LOG_DIR="$HIER/betrieb/logs"
+mkdir -p "$HIER/betrieb" "$LOG_DIR"
 touch "$EIGENE_ANZEIGE"
 
 ANZEIGEN=("$EIGENE_ANZEIGE")
 TAKTE=()
 PRAEFIXE=()
+BEFUNDE=()
 
 if [ -f "$CONF" ]; then
+  ZEILENNR=0
   while IFS= read -r zeile || [ -n "$zeile" ]; do
+    ZEILENNR=$((ZEILENNR + 1))
     zeile="${zeile%%#*}"
     [ -z "${zeile// /}" ] && continue
     set -- $zeile
     case "$1" in
-      anzeige) [ -f "$2" ] && ANZEIGEN+=("$2") ;;
-      takt)    TAKTE+=("$2 $3") ;;
-      praefix) PRAEFIXE+=("$2") ;;
+      anzeige)
+        if [ "$#" -ne 2 ]; then
+          BEFUNDE+=("waechter.conf Zeile $ZEILENNR: 'anzeige <pfad>' braucht genau ein Feld")
+        elif [ ! -f "$2" ]; then
+          BEFUNDE+=("waechter.conf Zeile $ZEILENNR: anzeige-Pfad '$2' existiert nicht")
+        else
+          ANZEIGEN+=("$2")
+        fi
+        ;;
+      takt)
+        if [ "$#" -ne 3 ] || ! [[ "$3" =~ ^[0-9]+$ ]]; then
+          BEFUNDE+=("waechter.conf Zeile $ZEILENNR: 'takt <name> <stunden>' braucht einen Namen und eine ganze Stundenzahl")
+        else
+          TAKTE+=("$2 $3")
+        fi
+        ;;
+      praefix)
+        if [ "$#" -ne 2 ]; then
+          BEFUNDE+=("waechter.conf Zeile $ZEILENNR: 'praefix <text>' braucht genau ein Feld")
+        else
+          PRAEFIXE+=("$2")
+        fi
+        ;;
+      *)
+        BEFUNDE+=("waechter.conf Zeile $ZEILENNR: unbekannte Direktive '$1'")
+        ;;
     esac
   done < "$CONF"
 fi
 
 GESTERN="$(date -v-1d '+%Y-%m-%d' 2>/dev/null || date -d 'yesterday' '+%Y-%m-%d')"
 HEUTE="$(date '+%Y-%m-%d')"
-JETZT="$(date '+%d.%m.%Y %H:%M')"
-
-BEFUNDE=()
+JETZT="$(date '+%Y-%m-%d %H:%M')"
 
 # 1. FEHLER-Zeilen seit gestern in allen bekannten Laufanzeigen.
 for datei in "${ANZEIGEN[@]}"; do
@@ -81,13 +116,15 @@ if [ "${#TAKTE[@]}" -gt 0 ]; then
       BEFUNDE+=("$job: noch nie gelaufen laut Laufanzeige")
       continue
     fi
-    zeit="$(echo "$letzter" | cut -d'|' -f1 | tr -d ' ')"
-    letzter_sek="$(date -j -f '%d.%m.%Y%H:%M' "$zeit" +%s 2>/dev/null || echo 0)"
-    if [ "$letzter_sek" -gt 0 ]; then
-      diff_h=$(( (JETZT_SEK - letzter_sek) / 3600 ))
-      if [ "$diff_h" -gt "$stunden" ]; then
-        BEFUNDE+=("$job: letzter Lauf vor ${diff_h}h, erwartet spaetestens alle ${stunden}h")
-      fi
+    zeit="$(echo "$letzter" | cut -d'|' -f1 | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//')"
+    letzter_sek="$(date -j -f '%Y-%m-%d %H:%M' "$zeit" +%s 2>/dev/null || true)"
+    if [ -z "$letzter_sek" ]; then
+      BEFUNDE+=("$job: Zeitstempel '$zeit' nicht lesbar (erwartet JJJJ-MM-TT SS:MM)")
+      continue
+    fi
+    diff_h=$(( (JETZT_SEK - letzter_sek) / 3600 ))
+    if [ "$diff_h" -gt "$stunden" ]; then
+      BEFUNDE+=("$job: letzter Lauf vor ${diff_h}h, erwartet spaetestens alle ${stunden}h")
     fi
   done
 fi
@@ -122,11 +159,17 @@ fi
 
 melden() {
   local titel="$1" text="$2"
+  local mitteilungslog="$LOG_DIR/waechter-mitteilungen.log"
   if [ "${MR_TEST:-0}" = "1" ]; then
-    echo "$JETZT MITTEILUNG (Test, nicht ausgeloest): $titel: $text" >> "$HIER/betrieb/logs/waechter-mitteilungen.log"
-    mkdir -p "$HIER/betrieb/logs"
-  else
-    /usr/bin/osascript -e "display notification \"$text\" with title \"$titel\"" >/dev/null 2>&1 || true
+    echo "$JETZT MITTEILUNG (Test, nicht ausgeloest): $titel: $text" >> "$mitteilungslog"
+    return 0
+  fi
+  if ! /usr/bin/osascript \
+      -e 'on run argv' \
+      -e 'display notification (item 1 of argv) with title (item 2 of argv)' \
+      -e 'end run' \
+      "$text" "$titel" >/dev/null 2>>"$mitteilungslog"; then
+    echo "$JETZT MITTEILUNG FEHLGESCHLAGEN: $titel: $text" >> "$mitteilungslog"
   fi
 }
 

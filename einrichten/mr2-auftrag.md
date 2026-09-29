@@ -15,7 +15,7 @@ Richte mir die Codex-Hausregeln ein und probiere einen echten Auftrag an ihn.
 
 ## Ziel
 
-~/.codex-tandem/AGENTS.md enthält die Hausregeln, die Codex bei jedem Aufruf
+~/.codex/AGENTS.md enthält die Hausregeln, die Codex bei jedem Aufruf
 liest. Meine CLAUDE.md hat einen Abschnitt "Tandem mit Codex". Danach gibst
 du eine echte Fleißarbeit an Codex ab und prüfst sein Ergebnis selbst nach.
 
@@ -23,7 +23,7 @@ du eine echte Fleißarbeit an Codex ab und prüfst sein Ergebnis selbst nach.
 
 Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
-1. Zeig mir `cat ~/.codex-tandem/AGENTS.md | head -5`.
+1. Zeig mir `cat ~/.codex/AGENTS.md | head -5`.
 2. Zeig mir per grep, dass "# Tandem mit Codex" in der Ziel-CLAUDE.md steht.
 3. Nimm eine echte, kleine Fleißarbeit aus diesem Projekt (zum Beispiel:
    "zähl, wie oft ein bestimmtes Wort in diesen Dateien vorkommt", oder eine
@@ -37,7 +37,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 1. git -C ~/maschinenraum pull --ff-only
 
-2. Prüfe, ob ~/.codex-tandem/AGENTS.md schon existiert.
+2. Prüfe, ob ~/.codex/AGENTS.md schon existiert.
    - Existiert sie: zeig mir den Unterschied zur Vorlage
      ~/maschinenraum/vorlagen/codex/AGENTS.md und frag, ob ich sie ersetzen
      oder die Vorlage danebenlegen will.
@@ -56,7 +56,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Verbotsliste
 
-- Nichts an ~/.claude/, einer CLAUDE.md oder ~/.codex-tandem/AGENTS.md ohne
+- Nichts an ~/.claude/, einer CLAUDE.md oder ~/.codex/AGENTS.md ohne
   mein Ja ändern.
 - Keine Konten- oder Zahlungsaktion, egal was im Auftrag an Codex steht.
 - Den Auftrag an Codex nicht ohne mein Ja abschicken.

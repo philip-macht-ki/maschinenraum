@@ -30,7 +30,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    Antworte nur mit dem Wort "bereit".
    EOF
    Zeig mir die Ausgabe. Dort muss "bereit" stehen, dazu eine Zeile mit
-   Tokenverbrauch und Protokollpfad.
+   Protokollpfad (Tokenverbrauch nur, wenn er verlässlich im Protokoll
+   auftaucht — sonst fehlt die Zahl, das ist kein Fehler).
 3. Zeig mir `ls ~/.codex-tandem/logs/ | tail -3`, dort muss die eben
    erzeugte Protokolldatei auftauchen.
 
