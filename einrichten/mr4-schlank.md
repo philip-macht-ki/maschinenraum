@@ -40,7 +40,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    time claude -p "<frage>"
    und danach:
    time claude -p "<frage>" --tools "" --strict-mcp-config \
-     --setting-sources "" --system-prompt "Du beantwortest ausschliesslich \
+     --setting-sources "" --system-prompt "Du beantwortest ausschließlich \
      die gestellte Frage, kurz und direkt."
 
 3. Zeig mir beide Antworten und beide Laufzeiten nebeneinander.

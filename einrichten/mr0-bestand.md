@@ -65,7 +65,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 - Nichts an `~/.claude/`, einer CLAUDE.md, `~/Library/LaunchAgents/` oder
   `~/.local/bin/` ändern. Diese Datei liest nur und legt `~/maschinenraum`
   an, nichts sonst.
-- Keine Konten anlegen ausser nach ausdrücklicher Erlaubnis für GitHub.
+- Keine Konten anlegen außer nach ausdrücklicher Erlaubnis für GitHub.
 
 ## Was du mich fragen musst
 
