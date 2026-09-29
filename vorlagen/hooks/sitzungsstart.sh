@@ -1,5 +1,5 @@
 #!/bin/bash
-# sitzungsstart.sh — Hook fuer SessionStart. Gibt die letzten FEHLER-Zeilen
+# sitzungsstart.sh: Hook fuer SessionStart. Gibt die letzten FEHLER-Zeilen
 # der Laufanzeige(n) aus, sonst nichts. So beginnt jede neue Sitzung mit dem
 # Stand deines Betriebs, ohne dass du danach fragen musst.
 #

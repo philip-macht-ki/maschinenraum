@@ -1,5 +1,5 @@
 #!/bin/bash
-# lauf.sh — startet einen Befehl mit vollem PATH, schreibt sein Protokoll nach
+# lauf.sh: startet einen Befehl mit vollem PATH, schreibt sein Protokoll nach
 # betrieb/logs/<name>.log und haengt eine Zeile an betrieb/laufanzeige.md an.
 #
 # Wozu: launchd kennt deinen PATH nicht und dein Terminal-Profil nicht. Ein

@@ -1,5 +1,5 @@
 #!/bin/bash
-# pruefen.sh — Ampel ueber den Stand deines Maschinenraums. Ein Blick, keine
+# pruefen.sh: Ampel ueber den Stand deines Maschinenraums. Ein Blick, keine
 # Handlung. GRUEN = passt, GELB = fehlt etwas Freiwilliges, ROT = fehlt etwas
 # Noetiges.
 #
@@ -70,7 +70,7 @@ fi
 
 if command -v ollama >/dev/null 2>&1; then
   if curl -s -m 2 http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
-    zeile "GRUEN" "ollama laeuft"
+    zeile "GRUEN" "ollama läuft"
   else
     zeile "GELB " "ollama installiert, aber der Dienst antwortet nicht (freiwillig)"
     GELB=1
@@ -79,10 +79,10 @@ fi
 
 echo
 if [ "$ROT" = 1 ]; then
-  echo "Gesamturteil: ROT — etwas Noetiges fehlt, siehe oben."
+  echo "Gesamturteil: ROT, etwas Nötiges fehlt, siehe oben."
   exit 1
 elif [ "$GELB" = 1 ]; then
-  echo "Gesamturteil: GELB — laeuft, freiwillige Teile fehlen noch."
+  echo "Gesamturteil: GELB, läuft, freiwillige Teile fehlen noch."
   exit 0
 else
   echo "Gesamturteil: GRUEN."

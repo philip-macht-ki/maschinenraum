@@ -1,5 +1,5 @@
 #!/bin/bash
-# waechter.sh — schaut ueber die Laufanzeige(n) und die launchd-Jobs und
+# waechter.sh: schaut ueber die Laufanzeige(n) und die launchd-Jobs und
 # meldet per Mac-Mitteilung, wenn etwas fehlt oder rot ist. Sonst meldet er
 # sich nicht: Stille heisst "alles in Ordnung", nicht "weiss ich nicht".
 #
@@ -17,7 +17,7 @@
 #                                Exitcode geprueft
 #
 # MR_TEST=1 schreibt die Mitteilung nur ins Protokoll statt sie wirklich
-# auszuloesen — so testest du den Waechter, ohne den Bildschirm zu bemuehen.
+# auszuloesen: so testest du den Waechter, ohne den Bildschirm zu bemuehen.
 
 set -uo pipefail
 
@@ -123,7 +123,7 @@ fi
 melden() {
   local titel="$1" text="$2"
   if [ "${MR_TEST:-0}" = "1" ]; then
-    echo "$JETZT MITTEILUNG (Test, nicht ausgeloest): $titel — $text" >> "$HIER/betrieb/logs/waechter-mitteilungen.log"
+    echo "$JETZT MITTEILUNG (Test, nicht ausgeloest): $titel: $text" >> "$HIER/betrieb/logs/waechter-mitteilungen.log"
     mkdir -p "$HIER/betrieb/logs"
   else
     /usr/bin/osascript -e "display notification \"$text\" with title \"$titel\"" >/dev/null 2>&1 || true

@@ -30,12 +30,12 @@ zeigt eine Ampel: was schon eingerichtet ist, was fehlt, was freiwillig ist.
 
 ## Was hier drinsteckt
 
-- `einrichten/` — die Aufträge für deinen Claude, einer je Baustein
-- `vorlagen/` — die eigentlichen Textbausteine und Skripte, die die Aufträge
+- `einrichten/`: die Aufträge für deinen Claude, einer je Baustein
+- `vorlagen/`: die eigentlichen Textbausteine und Skripte, die die Aufträge
   verwenden
-- `werkzeuge/` — kleine Skripte, die auf deinem Rechner laufen (Zeitplan
+- `werkzeuge/`: kleine Skripte, die auf deinem Rechner laufen (Zeitplan
   starten, Wächter, Schlüssel lesen)
-- `betrieb/` — hier entstehen deine eigenen Protokolle und Notizen, leer bei
+- `betrieb/`: hier entstehen deine eigenen Protokolle und Notizen, leer bei
   der Installation
 
 ## Was du selbst tun musst

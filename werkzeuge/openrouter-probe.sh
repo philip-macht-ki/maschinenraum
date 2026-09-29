@@ -1,5 +1,5 @@
 #!/bin/bash
-# openrouter-probe.sh — ein einzelner Aufruf an ein OpenRouter-Modell, zeigt
+# openrouter-probe.sh: ein einzelner Aufruf an ein OpenRouter-Modell, zeigt
 # Antwort und tatsaechliche Kosten des Aufrufs. Fuer den ersten Test nach der
 # Einrichtung, nicht fuer den Dauerbetrieb.
 #

@@ -1,5 +1,5 @@
 #!/bin/bash
-# schluessel.sh — liest einen Schluessel aus dem Schluesselbund und gibt ihn
+# schluessel.sh: liest einen Schluessel aus dem Schluesselbund und gibt ihn
 # NUR an das aufrufende Programm weiter, nie in den Chat und nie ins Protokoll.
 #
 # Den Schluessel selbst legst du einmalig so ab (tippt der Mensch, nicht

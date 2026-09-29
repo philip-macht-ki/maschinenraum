@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# codex-do — gibt einen Auftrag an Codex und liefert nur das Wesentliche zurueck.
+# codex-do: gibt einen Auftrag an Codex und liefert nur das Wesentliche zurueck.
 #
 #   codex-do <<'EOF'
 #   …Auftrag…
 #   EOF
 #
 # Der Auftrag kommt ueber stdin. Das volle Transkript landet in
-# ~/.codex-tandem/logs/, auf stdout kommen nur die letzten kurzen Zeilen —
+# ~/.codex-tandem/logs/, auf stdout kommen nur die letzten kurzen Zeilen -
 # Codex' Rohausgabe ist sechsstellig gross und wuerde jeden Kontext sprengen.
 #
 # Stellschrauben:
