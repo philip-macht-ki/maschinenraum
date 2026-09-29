@@ -11,7 +11,7 @@ gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir den Sitzungsstart-Hook aus dem Maschinenraum ein.
+Richte mir den Sitzungsstart-Hook aus ~/maschinenraum ein.
 
 ## Ziel
 

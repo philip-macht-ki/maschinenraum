@@ -10,7 +10,7 @@ ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir den Prüfer aus dem Maschinenraum ein.
+Richte mir den Prüfer aus ~/maschinenraum ein.
 
 ## Ziel
 

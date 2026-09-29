@@ -11,7 +11,7 @@ gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir den Wächter aus dem Maschinenraum ein, und löse absichtlich einen
+Richte mir den Wächter aus ~/maschinenraum ein, und löse absichtlich einen
 Fehler aus, um ihn zu testen.
 
 ## Ziel
@@ -38,7 +38,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 1. git -C ~/maschinenraum pull --ff-only
 
 2. Frag mich, ob es außer der eigenen Laufanzeige noch weitere gibt, die der
-   Wächter mitlesen soll (zum Beispiel die eines Werkstatt-Projektordners),
+   Wächter mitlesen soll (zum Beispiel die eines Projektordners aus dem Basis-Setups),
    und ob es Jobs mit bekanntem erwartetem Takt gibt (zum Beispiel "läuft
    täglich", "läuft stündlich"). Frag mich außerdem ausdrücklich, welche
    Jobgruppen der Wächter über launchd prüfen soll: nenn mir dafür die

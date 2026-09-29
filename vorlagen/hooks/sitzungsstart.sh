@@ -50,7 +50,7 @@ pruefe_datei() {
 
 pruefe_datei "$HOME/maschinenraum/betrieb/laufanzeige.md"
 
-# Weitere Laufanzeigen (z.B. aus einem Werkstatt-Projektordner) traegt
+# Weitere Laufanzeigen (z.B. aus einem Projektordner aus dem Basis-Setup) traegt
 # mr4-hooks.md hier als weitere pruefe_datei-Zeile ein, wenn du einen
 # eigenen Pfad angibst.
 

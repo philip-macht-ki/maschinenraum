@@ -6,13 +6,13 @@ bringt Belege statt Vermutungen mit. Beide sparen deiner Hauptsitzung
 Kontext, der sonst mit Rohdaten volllaufen würde.
 
 **So benutzt du diese Datei:** Voraussetzung ist, dass der Rechercheur aus
-deiner Werkstatt-Woche zur Delegation schon eingerichtet ist. Öffne Claude in
+deiner Woche im Basis-Setup zur Delegation schon eingerichtet ist. Öffne Claude in
 einem Projektordner und gib ihm den Text unterhalb der Linie.
 
 ---
 
 ```
-Richte mir die Helfer sichter und web-rechercheur aus dem Maschinenraum ein.
+Richte mir die Helfer sichter und web-rechercheur aus ~/maschinenraum ein.
 
 ## Ziel
 

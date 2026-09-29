@@ -1,5 +1,5 @@
 #!/bin/bash
-# pruefen.sh: Ampel ueber den Stand deines Maschinenraums. Ein Blick, keine
+# pruefen.sh: Ampel ueber den Stand deines Werkzeugkastens. Ein Blick, keine
 # Handlung. GRUEN = passt, GELB = fehlt etwas Freiwilliges, ROT = fehlt etwas
 # Noetiges.
 #
@@ -30,7 +30,7 @@ pruefe_befehl() {
   fi
 }
 
-echo "Maschinenraum, Stand $(date '+%d.%m.%Y %H:%M')"
+echo "Claude-Profi-Setup, Stand $(date '+%d.%m.%Y %H:%M')"
 echo
 
 pruefe_befehl git 1

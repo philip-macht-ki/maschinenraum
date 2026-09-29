@@ -8,7 +8,7 @@ das Vorhaben, verschwindet der Ordner samt Handbuch, und nichts bläht deine
 allgemeine Einrichtung auf.
 
 **So benutzt du diese Datei:** Öffne Claude in dem Projektordner, um den es
-geht, und sag ihm: Richte mir `einrichten/mr5-sop.md` aus dem Maschinenraum ein.
+geht, und sag ihm: Richte mir `einrichten/mr5-sop.md` aus ~/maschinenraum ein.
 
 ---
 

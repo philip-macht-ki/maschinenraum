@@ -1,7 +1,7 @@
 # Einrichten lassen: dein Bestand
 
 **Wofür:** Bevor irgendetwas Neues dazukommt, schreibt Claude auf, was bei
-dir schon eingerichtet ist, holt den Maschinenraum nach `~/maschinenraum` und
+dir schon eingerichtet ist, holt den Werkzeugkasten nach `~/maschinenraum` und
 prüft mit der Ampel, ob die Grundausstattung da ist.
 
 **So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und
@@ -10,7 +10,7 @@ gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir den Maschinenraum ein und schreib mir auf, was bei mir schon
+Richte mir den Werkzeugkasten ein und schreib mir auf, was bei mir schon
 läuft.
 
 ## Ziel
@@ -87,7 +87,7 @@ Kurz:
 
 ## Was jetzt anders ist
 
-Du hast eine eigene Kopie des Maschinenraums auf deinem Rechner, und eine
+Du hast eine eigene Kopie des Werkzeugkastens auf deinem Rechner, und eine
 Datei, die zeigt, was du schon hast und was noch fehlt. Jede weitere Lektion
 baut darauf auf, ohne dass du dich erinnern musst, was du schon eingerichtet
 hast.

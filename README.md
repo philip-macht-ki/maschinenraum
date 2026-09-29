@@ -1,4 +1,4 @@
-# Maschinenraum
+# Werkzeugkasten zum Claude-Profi-Setup
 
 Das hier ist keine App und kein Programm, das du selbst bedienen musst. Es
 ist eine Sammlung von Bauplänen für Dinge, die im Hintergrund für dich
@@ -15,7 +15,7 @@ Datei unter `einrichten/`, die du deinem eigenen Claude gibst.
    „Hol dir dieses Repo nach `~/maschinenraum` und richte
    `einrichten/mr0-bestand.md` ein."
 2. Für jeden weiteren Baustein: Sag deinem Claude „Richte mir `<datei>` aus
-   dem Maschinenraum ein." und nenn ihm den Dateinamen aus `einrichten/`.
+   ~/maschinenraum ein." und nenn ihm den Dateinamen aus `einrichten/`.
 3. Jede Einrichtung fragt dich, bevor sie etwas an deinen Grundeinstellungen
    ändert, und zeigt dir am Ende, dass sie wirklich funktioniert, nicht nur,
    dass sie es behauptet.

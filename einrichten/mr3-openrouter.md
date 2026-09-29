@@ -13,7 +13,7 @@ einem Projektordner und gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir OpenRouter aus dem Maschinenraum ein.
+Richte mir OpenRouter aus ~/maschinenraum ein.
 
 ## Ziel
 

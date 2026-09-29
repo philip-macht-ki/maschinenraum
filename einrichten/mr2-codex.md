@@ -13,7 +13,7 @@ Ordner und gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir Codex und codex-do aus dem Maschinenraum ein.
+Richte mir Codex und codex-do aus ~/maschinenraum ein.
 
 ## Ziel
 

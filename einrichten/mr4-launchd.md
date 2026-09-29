@@ -13,7 +13,7 @@ Befehl, der laufen soll, und wie oft.
 ---
 
 ```
-Richte mir einen launchd-Job ein, der lauf.sh aus dem Maschinenraum aufruft.
+Richte mir einen launchd-Job ein, der lauf.sh aus ~/maschinenraum aufruft.
 
 ## Ziel
 

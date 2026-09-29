@@ -9,7 +9,7 @@ Regel gelten soll, und gib ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir die Routing-Regel aus dem Maschinenraum ein.
+Richte mir die Routing-Regel aus ~/maschinenraum ein.
 
 ## Ziel
 

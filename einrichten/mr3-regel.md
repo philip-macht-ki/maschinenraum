@@ -9,7 +9,7 @@ ihm den Text unterhalb der Linie.
 ---
 
 ```
-Richte mir die Regel "Modelle und Kosten" aus dem Maschinenraum ein.
+Richte mir die Regel "Modelle und Kosten" aus ~/maschinenraum ein.
 
 ## Ziel
 
