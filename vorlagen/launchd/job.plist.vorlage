@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Vorlage fuer einen launchd-Job, der ~/maschinenraum/werkzeuge/lauf.sh
+  aufruft. Platzhalter (mit sed oder von Hand ersetzen):
+    {{NAME}}     Label des Jobs, z.B. com.maschinenraum.mein-job
+    {{BEFEHL}}   der eigentliche Befehl, z.B. graphify update .
+    {{STUNDE}}   0-23
+    {{MINUTE}}   0-59
+    {{HOME}}     dein Heimatverzeichnis, volle Pfadangabe (kein ~)
+
+  Nie unter ~/Desktop oder ~/Documents ablegen - dort verweigert macOS
+  geplanten Laeufen still den Zugriff. Richtiger Ort:
+  ~/Library/LaunchAgents/{{NAME}}.plist
+-->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>{{NAME}}</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/bin/bash</string>
+		<string>-lc</string>
+		<string>{{HOME}}/maschinenraum/werkzeuge/lauf.sh {{NAME}} -- {{BEFEHL}}</string>
+	</array>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:{{HOME}}/.local/bin:/usr/bin:/bin</string>
+	</dict>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>{{STUNDE}}</integer>
+		<key>Minute</key>
+		<integer>{{MINUTE}}</integer>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>{{HOME}}/maschinenraum/betrieb/logs/{{NAME}}.launchd.log</string>
+	<key>StandardErrorPath</key>
+	<string>{{HOME}}/maschinenraum/betrieb/logs/{{NAME}}.launchd.log</string>
+</dict>
+</plist>
