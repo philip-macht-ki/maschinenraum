@@ -35,11 +35,15 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 1. git -C ~/maschinenraum pull --ff-only
 
 2. Frag mich, ob ich den Schlüssel schon im Schlüsselbund abgelegt habe.
-   - Wenn nein: sag mir genau diesen Befehl, den ich SELBST im Terminal
-     ausführe (er fragt interaktiv nach dem Wert, du siehst ihn nie):
-     security add-generic-password -s openrouter -a "$USER" -w
-     Warte, bis ich sage, dass ich fertig bin. Führe diesen Befehl NIE
-     selbst mit einem Wert aus.
+   - Wenn nein: öffne mir die Schlüsselbundverwaltung
+     (`open -a "Schlüsselbundverwaltung"`, ggf. `open -a "Keychain Access"`).
+     Sag mir genau, was ich dort selbst eintragen muss: ein neues
+     Passwortobjekt mit Dienstname "openrouter", Konto meinen
+     Benutzernamen (den Wert von $USER, den du mir nennst) und den
+     Schlüssel selbst als Passwort. Ich tippe den Schlüssel nur dort ein,
+     nie im Terminal und nie im Chat. Warte, bis ich sage, dass ich fertig
+     bin. Führe `security add-generic-password ... -w` NIE selbst mit
+     einem Wert aus.
 
 3. Führe werkzeuge/openrouter-probe.sh aus. Schlägt es fehl, lies die
    Fehlermeldung vor und schlag KEINE Abkürzung vor, die den Schlüssel im

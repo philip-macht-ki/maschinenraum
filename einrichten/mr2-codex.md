@@ -1,12 +1,14 @@
 # Einrichten lassen: Codex
 
 **Wofür:** Ein zweiter Agent mit eigenem Guthaben, der Fleißarbeit und Bilder
-übernimmt, während dein Claude das Urteil behält. Du brauchst dafür ein
-ChatGPT-Abo (mindestens Plus), das schließt du selbst ab.
+übernimmt, während dein Claude das Urteil behält. Codex steckt in den
+ChatGPT-Tarifen, mit unterschiedlich viel Nutzung. Für regelmäßige Arbeit
+empfehle ich Plus, rund 23 € im Monat, das schließt du selbst ab.
 
-**So benutzt du diese Datei:** Hast du noch kein ChatGPT-Plus-Konto,
-schließ es zuerst selbst ab. Öffne dann Claude in einem beliebigen Ordner und
-gib ihm den Text unterhalb der Linie.
+**So benutzt du diese Datei:** Hast du noch kein passendes ChatGPT-Konto,
+richte es zuerst selbst ein und prüf dabei, ob dein Tarif und sein
+Nutzungsrahmen für dich reichen. Öffne dann Claude in einem beliebigen
+Ordner und gib ihm den Text unterhalb der Linie.
 
 ---
 
@@ -30,8 +32,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    Antworte nur mit dem Wort "bereit".
    EOF
    Zeig mir die Ausgabe. Dort muss "bereit" stehen, dazu eine Zeile mit
-   Protokollpfad (Tokenverbrauch nur, wenn er verlässlich im Protokoll
-   auftaucht — sonst fehlt die Zahl, das ist kein Fehler).
+   Exitcode und Protokollpfad. Keine Token-Zahl, die gibt codex-do
+   absichtlich nicht aus.
 3. Zeig mir `ls ~/.codex-tandem/logs/ | tail -3`, dort muss die eben
    erzeugte Protokolldatei auftauchen.
 
@@ -44,9 +46,13 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    - Fehlt sie: frag mich, ob du sie installieren darfst
      (`npm install -g @openai/codex` oder, falls Homebrew da ist,
      `brew install --cask codex`), und warte auf mein Ja.
-   - Danach: sag mir, dass ich `codex login` selbst im Terminal starte und
-     mich im Browser mit meinem ChatGPT-Konto anmelde. Das machst du nicht
-     für mich, das ist eine Anmeldung.
+   - Danach: führe `codex login` selbst aus. Das startet einen lokalen
+     Anmeldeserver und öffnet von selbst den Anmeldedialog im Browser. Sag
+     mir, dass ich dort meine Anmeldung mit meinem ChatGPT-Konto bestätigen
+     muss, das ist eine Anmeldung, die nur ich abschließen kann. Verlangt
+     Codex stattdessen einen manuellen Schritt im Terminal (etwa eine URL
+     zum Kopieren), sag mir genau, was ich anklicken oder eingeben muss,
+     statt mich raten zu lassen.
 
 3. Prüfe, ob ~/.local/bin existiert, leg den Ordner sonst an. Frag mich
    zuerst, ob du in ~/.local/bin schreiben darfst, und zeig mir, was
@@ -70,8 +76,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 ## Verbotsliste
 
 - Keine vorhandene Datei unter ~/.local/bin ohne mein Ja überschreiben.
-- codex login nicht selbst ausführen, das ist eine Anmeldung, die ich
-  bestätige.
+- Meinen Anmeldeschlüssel oder mein Passwort nie selbst sehen wollen oder
+  abfragen, das läuft ausschließlich über den Anmeldedialog im Browser.
 - Kein `codex exec` direkt aufrufen, nur über codex-do.
 
 ## Was du mich fragen musst
@@ -79,6 +85,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 - ob du Codex installieren darfst
 - ob du in ~/.local/bin schreiben darfst
 - ob die PATH-Zeile in meine Shell-Konfiguration soll
+- dass ich die Anmeldung im Browser bestätige, sobald sich der Dialog öffnet
 
 Rate nichts. Wo du unsicher bist, frag.
 

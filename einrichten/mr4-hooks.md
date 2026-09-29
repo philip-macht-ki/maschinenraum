@@ -36,13 +36,16 @@ Hook bei jedem SessionStart-Ereignis):
             "hooks": [
               {
                 "type": "command",
-                "command": "/Users/<du>/.claude/hooks/sitzungsstart.sh"
+                "command": "~/.claude/hooks/sitzungsstart.sh"
               }
             ]
           }
         ]
       }
     }
+
+Beim tatsächlichen Einrichten löst du (Claude) `~` selbst in den lokalen
+Pfad des Mitglieds auf, bevor der Eintrag geschrieben wird.
 
 Bestehende Einträge unter "hooks" (auch andere Ereignisse wie PreToolUse
 oder ein schon vorhandener SessionStart-Eintrag eines anderen Werkzeugs)

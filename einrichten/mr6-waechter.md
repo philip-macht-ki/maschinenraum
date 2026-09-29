@@ -40,9 +40,12 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 2. Frag mich, ob es außer der eigenen Laufanzeige noch weitere gibt, die der
    Wächter mitlesen soll (zum Beispiel die eines Werkstatt-Projektordners),
    und ob es Jobs mit bekanntem erwartetem Takt gibt (zum Beispiel "läuft
-   täglich", "läuft stündlich"). Trag beides in
-   ~/maschinenraum/betrieb/waechter.conf ein, nach dem Muster, das in
-   werkzeuge/waechter.sh als Kommentar steht.
+   täglich", "läuft stündlich"). Frag mich außerdem ausdrücklich, welche
+   Jobgruppen der Wächter über launchd prüfen soll: nenn mir dafür die
+   Präfixe deiner eingerichteten Jobs (zum Beispiel "com.dj." oder ein
+   anderes Präfix, das bei dir wiederkehrt), nicht nur einzelne Jobnamen.
+   Trag alles in ~/maschinenraum/betrieb/waechter.conf ein, nach dem Muster,
+   das in werkzeuge/waechter.sh als Kommentar steht.
 
 3. Richte einen launchd-Job ein, der morgens werkzeuge/waechter.sh aufruft,
    genau nach dem Ablauf aus mr4-launchd.md (Vorlage, plutil-Prüfung,
@@ -59,6 +62,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 ## Was du mich fragen musst
 
 - weitere Laufanzeigen und erwartete Takte für waechter.conf
+- welche Jobgruppen (launchd-Präfixe) der Wächter prüfen soll
 - ob eine Mitteilung auf dem Bildschirm erschienen ist
 - Erlaubnis für den launchd-Eintrag
 
@@ -67,7 +71,8 @@ Rate nichts. Wo du unsicher bist, frag.
 ## Abschlussbericht
 
 Kurz:
-- Inhalt von waechter.conf
+- Inhalt von waechter.conf, mit der Liste der geprüften Jobgruppen (Präfixe)
+  am Ende, damit du sie noch einmal siehst
 - der Befund aus betrieb/waechter.md nach dem absichtlichen Fehler
 - ob die Mitteilung erschienen ist
 ```

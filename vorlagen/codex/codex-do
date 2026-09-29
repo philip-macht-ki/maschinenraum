@@ -17,7 +17,9 @@
 # gross und wuerde jeden Kontext sprengen.
 #
 # Stellschrauben:
-#   CODEX_SANDBOX   read-only | workspace-write | danger-full-access  (Standard: danger-full-access)
+#   CODEX_SANDBOX   read-only | workspace-write | danger-full-access  (Standard: workspace-write;
+#                   read-only genuegt fuer reine Recherche; danger-full-access nur nach
+#                   ausdruecklicher Freigabe des Menschen fuer genau diesen Auftrag)
 #   CODEX_TAIL      wie viele Zeilen zurueckkommen                    (Standard: 25)
 #   CODEX_MODEL     Modell ueberschreiben                             (Standard: aus der Config)
 #   CODEX_IMAGES    Leerzeichengetrennte Bildpfade als Referenzbilder
@@ -33,7 +35,7 @@ LOG="$LOG_DIR/$(date +%Y%m%d-%H%M%S)-$$.log"
 ANTWORT_DATEI="$(mktemp "${TMPDIR:-/tmp}/codex-do-antwort.XXXXXX")"
 trap 'rm -f "$ANTWORT_DATEI"' EXIT
 
-args=(exec -s "${CODEX_SANDBOX:-danger-full-access}" --skip-git-repo-check -o "$ANTWORT_DATEI")
+args=(exec -s "${CODEX_SANDBOX:-workspace-write}" --skip-git-repo-check -o "$ANTWORT_DATEI")
 [ -n "${CODEX_MODEL:-}" ] && args+=(-m "$CODEX_MODEL")
 if [ -n "${CODEX_IMAGES:-}" ]; then
   for img in $CODEX_IMAGES; do
@@ -49,18 +51,13 @@ status=$?
 ANTWORT=""
 [ -s "$ANTWORT_DATEI" ] && ANTWORT="$(cat "$ANTWORT_DATEI")"
 
-# Tokenverbrauch ist nur ein Best-Effort-Fund im Transkript (Marker "tokens
-# used", nicht dokumentiert und nicht garantiert) - fehlt er, wird er
-# einfach weggelassen statt einen ganzen Lauf als gescheitert zu melden.
-TOKENS="$(awk '/^tokens used$/{getline t; print t; exit}' "$LOG" 2>/dev/null || true)"
-
+# Nur Abschlussantwort, Exitcode und Protokollpfad kommen zurueck. Der
+# Tokenverbrauch bleibt bewusst aussen vor (Textregel: keine Token-Zahlen) -
+# wer ihn braucht, fragt gezielt danach ("Zeig mir den Verbrauch.") statt
+# ihn bei jedem Aufruf mitgeliefert zu bekommen.
 if [ -n "$ANTWORT" ]; then
   echo "$ANTWORT" | cut -c1-300 | tail -"${CODEX_TAIL:-25}"
-  if [ -n "$TOKENS" ]; then
-    echo "--- codex-do: $TOKENS Tokens · exit $status · $LOG"
-  else
-    echo "--- codex-do: exit $status · $LOG"
-  fi
+  echo "--- codex-do: exit $status · $LOG"
 else
   echo "--- codex-do: keine Antwort, exit $status. Letzte Zeilen:"
   awk 'length($0) < 400' "$LOG" \

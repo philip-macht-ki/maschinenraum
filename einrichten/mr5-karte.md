@@ -26,10 +26,15 @@ frischt nachts alle diese Ordner gemeinsam auf und schreibt eine Zeile in
 
 Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
-1. Mach in einem der genannten Ordner einen kleinen Test-Commit (eine
-   Leerzeile in eine Testdatei, dann rückgängig machen) und zeig mir, dass
-   danach ein Rebuild angestoßen wurde (Log des Hooks oder neuer Zeitstempel
-   von graphify-out/graph.json).
+1. Frag mich zuerst, ob ein Test-Commit in diesem Ordner gefahrlos ist (er
+   könnte ein Deployment, einen weiteren Hook oder eine externe Automation
+   auslösen). Sagst du ja: mach in diesem Ordner einen kleinen Test-Commit
+   (eine Leerzeile in eine Testdatei, dann rückgängig machen) und zeig mir,
+   dass danach ein Rebuild angestoßen wurde (Log des Hooks oder neuer
+   Zeitstempel von graphify-out/graph.json). Sagst du nein oder bist du
+   unsicher: prüf den Hook stattdessen nur lesend (Inhalt der
+   Post-Commit-Datei, kein echter Commit) und sag mir, dass die Abnahme
+   dafür ohne echten Testlauf gilt.
 2. Löse den nächtlichen Job einmal per Hand aus
    (launchctl kickstart gui/$(id -u)/<name>) und zeig mir die neue Zeile in
    der Laufanzeige.
@@ -77,6 +82,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 - ob je Ordner ein Post-Commit-Haken eingerichtet werden soll
 - die Uhrzeit für den Sammellauf
 - Erlaubnis für den launchd-Eintrag
+- ob ein Test-Commit in dem jeweiligen Ordner gefahrlos ist
 
 Rate nichts. Wo du unsicher bist, frag.
 

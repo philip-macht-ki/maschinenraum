@@ -3,8 +3,9 @@
 **Wofür:** Ruft ein Skript Claude im Hintergrund auf (`claude -p`), lädt das
 normalerweise seine ganze Grundausstattung mit, Werkzeuge, Verbindungen,
 CLAUDE.md, für eine Antwort, die oft nur ein paar Sätze lang ist. Mit ein
-paar zusätzlichen Schaltern bleibt nur ein Bruchteil davon übrig, bei
-gleicher Antwort.
+paar zusätzlichen Schaltern bleibt nur ein Bruchteil davon übrig. Ob die
+Antwort dabei für deinen Zweck ausreicht, prüfst du an der konkreten
+Aufgabe, nicht vorab pauschal.
 
 **So benutzt du diese Datei:** Öffne Claude in einem Projektordner und gib
 ihm den Text unterhalb der Linie.
@@ -75,4 +76,6 @@ Kurz:
 Ein Skript, das Claude im Hintergrund braucht, holt jetzt nur noch, was es
 wirklich für die Antwort benötigt, statt jedes Mal deine ganze
 Grundausstattung mitzuschleppen. Das macht eigene Automatisierungen
-schneller und günstiger, ohne dass die Antwort schlechter wird.
+schneller und günstiger. Übernimm die schlanke Fassung nur dort, wo du an
+deiner eigenen Aufgabe geprüft hast, dass die Antwort ausreicht und sich
+der gemessene Unterschied lohnt.

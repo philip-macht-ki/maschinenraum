@@ -12,14 +12,15 @@ codex-do <<'EOF'
 EOF
 ```
 
-Das Skript gibt nur Codex' Abschlussantwort und den Tokenverbrauch zurück,
-das volle Transkript landet in `~/.codex-tandem/logs/`. **Niemals `codex
-exec` direkt aufrufen**, dessen Rohausgabe ist sechsstellig groß und
+Das Skript gibt nur Codex' Abschlussantwort, Exitcode und Protokollpfad
+zurück, das volle Transkript landet in `~/.codex-tandem/logs/`. **Niemals
+`codex exec` direkt aufrufen**, dessen Rohausgabe ist sechsstellig groß und
 sprengt den Kontext.
 
-Umgebungsvariablen: `CODEX_SANDBOX` (Standard `danger-full-access`,
-`read-only` genügt für reine Recherche), `CODEX_TAIL` (Zeilenzahl der
-Antwort), `CODEX_MODEL`.
+Umgebungsvariablen: `CODEX_SANDBOX` (Standard `workspace-write`, `read-only`
+genügt für reine Recherche; `danger-full-access` nur nach ausdrücklicher
+Freigabe für genau diesen Auftrag), `CODEX_TAIL` (Zeilenzahl der Antwort),
+`CODEX_MODEL`.
 
 ## Wann delegieren
 
@@ -42,7 +43,7 @@ Codex sieht den Gesprächsverlauf nicht. Der Auftrag muss allein stehen:
 konkrete IDs und Pfade, eine ausdrückliche Verbotsliste („diese Dateien
 nicht anfassen"), ein vorgegebenes Ausgabeformat. Die Hausregeln, die er
 ohnehin liest, stehen in `~/.codex/AGENTS.md` (der normale, von `codex
-login` genutzte Ort — `codex-do` setzt bewusst kein eigenes CODEX_HOME).
+login` genutzte Ort, `codex-do` setzt bewusst kein eigenes CODEX_HOME).
 
 ## Gegenprüfen und Transparenz
 

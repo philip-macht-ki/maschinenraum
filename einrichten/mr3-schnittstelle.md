@@ -37,20 +37,34 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 2. Frag mich, ob mir dieser Preisrahmen passt, bevor du weitermachst.
 
 3. Frag mich, ob der Schlüssel schon im Schlüsselbund liegt (Dienstname
-   <DIENST>). Falls nicht, sag mir den Befehl, den ich selbst ausführe:
-   security add-generic-password -s <DIENST> -a "$USER" -w
-   Führe ihn nie selbst mit einem Wert aus.
+   <DIENST>). Falls nicht, öffne mir die Schlüsselbundverwaltung
+   (`open -a "Schlüsselbundverwaltung"`, ggf. `open -a "Keychain Access"`)
+   und sag mir genau, was ich dort selbst anlege: ein neues Passwortobjekt
+   mit Dienstname <DIENST>, Konto meinen Benutzernamen, und den Schlüssel
+   selbst als Passwort. Ich tippe den Schlüssel nur dort ein, nie im
+   Terminal und nie im Chat. Führe `security add-generic-password ... -w`
+   nie selbst mit einem Wert aus.
 
-4. Erzwing das Format über einen bewussten Fehlerfall: schick einen Aufruf
-   mit einem absichtlich falschen Feld (zum Beispiel einem Text statt einer
-   Zahl, wo eine Zahl erwartet wird) und lies die Fehlermeldung. Manche
-   Dienste nehmen unbekannte Felder mit Erfolg (HTTP 200) an und werfen sie
-   still weg, andere lösen bei einem falsch geformten Aufruf trotzdem einen
-   bezahlten Auftrag aus. Zeig mir die Fehlerantwort, bevor du einen echten
+4. Prüf zuerst in der Dokumentation, ob <DIENST> einen eigenen Sandbox-,
+   Validate- oder Dry-run-Endpunkt anbietet (ein Aufruf, der das Format
+   prüft, ohne einen echten Auftrag auszulösen). Gibt es einen, ruf ihn mit
+   einem absichtlich falschen Feld auf (zum Beispiel einem Text statt einer
+   Zahl, wo eine Zahl erwartet wird) und lies die Fehlermeldung, ohne dass
+   dabei etwas Bezahltes anfällt.
+
+   Gibt es keinen solchen Endpunkt, prüf die geplante Anfrage stattdessen
+   rein lokal gegen das Schema aus der Dokumentation (Pflichtfelder,
+   Typen, Wertebereiche), ohne sie abzuschicken. Manche Dienste nehmen
+   unbekannte Felder mit Erfolg (HTTP 200) an und werfen sie still weg,
+   andere lösen bei einem falsch geformten Aufruf trotzdem einen bezahlten
+   Auftrag aus. Zeig mir das Ergebnis dieser Prüfung, bevor du einen echten
    Aufruf machst.
 
-5. Führe erst nach meinem Ja den echten Probeaufruf aus. Zeig mir Antwort
-   und, falls die Antwort Kosten oder Verbrauch nennt, diese Zahl.
+5. Führe den ersten echten Netzaufruf erst nach meinem ausdrücklichen Ja
+   aus, und sag mir vorher, was er im schlechtesten Fall kosten kann.
+   Behandle ihn als kostenpflichtigen Probeaufruf mit einer von mir
+   genannten Höchstgrenze, nicht als gefahrlosen Test. Zeig mir danach
+   Antwort und, falls die Antwort Kosten oder Verbrauch nennt, diese Zahl.
 
 6. Schreib einen Eintrag nach betrieb/schnittstellen.md: Dienst, Preisrahmen,
    wo der Schlüssel liegt (nur der Dienstname, nie der Wert), Datum des
@@ -70,7 +84,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 - ob mir der Preisrahmen passt
 - ob der Schlüssel schon im Schlüsselbund liegt
-- ob der echte Probeaufruf jetzt laufen darf
+- ob der echte Probeaufruf jetzt laufen darf, mit welcher Höchstgrenze
 
 Rate nichts. Wo du unsicher bist, frag.
 
@@ -78,8 +92,9 @@ Rate nichts. Wo du unsicher bist, frag.
 
 Kurz:
 - Preisrahmen von <DIENST>
-- Ergebnis des Fehlerfall-Aufrufs
-- Ergebnis des echten Probeaufrufs, mit Kosten
+- Ergebnis der Sandbox-/Dry-run-Prüfung oder der lokalen Schemaprüfung
+- Ergebnis des echten Probeaufrufs, mit Kosten und der zuvor genannten
+  Höchstgrenze
 ```
 
 ---
@@ -87,6 +102,7 @@ Kurz:
 ## Was jetzt anders ist
 
 Jede neue Schnittstelle bekommt denselben Ablauf: erst verstehen, was sie
-kostet, dann einen ungefährlichen Fehlversuch, erst dann Geld ausgeben. Das
-verhindert den Fehler, dass ein falsch geformter Testaufruf trotzdem einen
-bezahlten Auftrag auslöst.
+kostet, dann eine Sandbox-, Validate- oder lokale Schemaprüfung ohne echten
+Aufruf, erst dann Geld ausgeben, und zwar bewusst als Probeaufruf mit
+genannter Höchstgrenze. Das verhindert den Fehler, dass ein vermeintlicher
+Testaufruf trotzdem einen bezahlten Auftrag auslöst.
