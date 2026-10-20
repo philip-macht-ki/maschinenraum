@@ -4,8 +4,9 @@
 Empfehlung, wann sich Delegation überhaupt lohnt. Kein Vergleich in Tokens,
 nur in Euro und Alltagssprache.
 
-**So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und
-gib ihm den Text unterhalb der Linie.
+**So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und gib
+ihm den Text unterhalb der Linie. Hast du zwei Macs, öffne Claude auf dem
+Rechner, der dauerhaft läuft, nicht auf dem Laptop.
 
 ---
 

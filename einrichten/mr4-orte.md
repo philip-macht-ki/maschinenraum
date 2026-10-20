@@ -4,7 +4,10 @@
 Cloud-Routine (läuft ohne deinen Mac, sieht deine Dateien nicht),
 Desktop-Routine (App muss offen sein, holt nur den letzten verpassten Lauf
 nach), oder launchd (läuft ohne offene App, direkt auf deinem Mac). Diese
-Lektion sortiert deine eigenen Vorhaben in die richtige Spalte.
+Lektion sortiert deine eigenen Vorhaben in die richtige Spalte. Und es gilt
+immer: eine Aufgabe, ein Rechner. Hast du zwei Macs, läuft jede Aufgabe auf
+genau einem davon, dem Dauerrechner. Ein Laptop holt verpasste Läufe beim
+Aufklappen nach, und dann passiert alles doppelt.
 
 **So benutzt du diese Datei:** Öffne Claude in dem Projektordner, in dem
 deine Jobs laufen sollen, und gib ihm den Text unterhalb der Linie.
@@ -18,8 +21,8 @@ mir eine Tabelle.
 ## Ziel
 
 betrieb/zeitplaene.md listet jede Aufgabe, die regelmäßig laufen soll, mit
-dem passenden Ort (Cloud-Routine, Desktop-Routine, launchd) und der
-Begründung.
+dem passenden Ort (Cloud-Routine, Desktop-Routine, launchd), dem einen
+Rechner, auf dem sie läuft, und der Begründung.
 
 ## Abnahme
 
@@ -27,15 +30,19 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 1. Zeig mir den Inhalt von betrieb/zeitplaene.md.
 2. Zeig mir zu jeder Zeile deine Begründung in einem Halbsatz.
+3. Keine Aufgabe steht mit zwei Rechnern in der Tabelle.
 
 ## Schritte
 
-1. Frag mich, welche wiederkehrenden Aufgaben ich mir vorstelle oder schon
+1. Zeig mir den Namen dieses Rechners mit `hostname -s` und frag mich, ob
+   ich einen zweiten Mac habe und welcher der beiden dauerhaft läuft.
+
+2. Frag mich, welche wiederkehrenden Aufgaben ich mir vorstelle oder schon
    habe (Desktop-Routinen, eigene launchd-Jobs). Nutze `launchctl list`, um
    an meinem Benutzernamen erkennbare eigene Jobs zu finden, ohne fremde
    Systemdienste anzufassen.
 
-2. Sortiere jede genannte Aufgabe nach dieser Regel:
+3. Sortiere jede genannte Aufgabe nach dieser Regel:
    - Muss sie laufen, auch wenn mein Mac aus oder der Deckel zu ist, und
      braucht sie KEINEN Zugriff auf meine lokalen Dateien: Cloud-Routine.
    - Braucht sie Zugriff auf meine lokalen Dateien, aber ich bin
@@ -44,10 +51,16 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    - Braucht sie Zugriff auf lokale Dateien UND soll auch ohne offene App
      laufen: launchd.
 
-3. Schreib die Tabelle nach betrieb/zeitplaene.md: Aufgabe, Ort, Begründung,
-   Zeitplan (falls schon entschieden).
+4. Gib jeder Aufgabe genau einen Rechner. Habe ich zwei Macs, ist das für
+   Desktop-Routinen und launchd immer der Dauerrechner, nie der Laptop. Eine
+   Cloud-Routine braucht keinen Rechner, dort steht Cloud. Läuft eine Aufgabe
+   heute schon auf beiden Rechnern, schreib das als Befund dazu, ändere aber
+   nichts.
 
-4. Führe die Abnahme aus.
+5. Schreib die Tabelle nach betrieb/zeitplaene.md: Aufgabe, Ort, Rechner,
+   Begründung, Zeitplan (falls schon entschieden).
+
+6. Führe die Abnahme aus.
 
 ## Verbotsliste
 
@@ -56,6 +69,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Was du mich fragen musst
 
+- ob ich einen zweiten Mac habe und welcher dauerhaft läuft
 - welche Aufgaben ich mir vorstelle oder schon eingerichtet habe
 
 Rate nichts. Wo du unsicher bist, frag.

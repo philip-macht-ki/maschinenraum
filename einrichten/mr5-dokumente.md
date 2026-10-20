@@ -7,7 +7,8 @@ einzigen Ordner.
 
 **So benutzt du diese Datei:** Voraussetzung ist eine bestehende Karte in
 diesem Ordner. Öffne Claude in dem Projektordner, dessen Dokumente auf die
-Karte sollen, und gib ihm den Text unterhalb der Linie.
+Karte sollen, und gib ihm den Text unterhalb der Linie. Hast du zwei Macs,
+öffne Claude auf dem Rechner, der dauerhaft läuft, nicht auf dem Laptop.
 
 ---
 

@@ -5,8 +5,11 @@ deine launchd-Jobs und meldet sich per Mac-Mitteilung nur, wenn etwas fehlt
 oder rot ist. Bleibt etwas stehen, erfährst du es, statt es Tage später
 zufällig zu bemerken.
 
-**So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und
-gib ihm den Text unterhalb der Linie.
+**So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und gib
+ihm den Text unterhalb der Linie. Hast du zwei Macs, öffne Claude auf dem
+Rechner, der dauerhaft läuft, nicht auf dem Laptop. Der Wächter läuft nur
+dort, mit der Rechner-Sperre aus mr4-launchd.md. Auf zwei Rechnern meldet er
+alles doppelt.
 
 ---
 

@@ -9,6 +9,8 @@ allgemeine Einrichtung auf.
 
 **So benutzt du diese Datei:** Öffne Claude in dem Projektordner, um den es
 geht, und sag ihm: Richte mir `einrichten/mr5-sop.md` aus ~/maschinenraum ein.
+Hast du zwei Macs, öffne Claude auf dem Rechner, der dauerhaft läuft, nicht
+auf dem Laptop.
 
 ---
 

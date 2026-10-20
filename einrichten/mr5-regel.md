@@ -4,9 +4,10 @@
 zuerst die Karte fragt, statt gleich Dateien zu durchsuchen oder einen
 breiten Such-Helfer zu starten.
 
-**So benutzt du diese Datei:** Voraussetzung ist mindestens eine
-eingerichtete Karte. Öffne Claude in einem beliebigen Ordner und gib ihm den
-Text unterhalb der Linie.
+**So benutzt du diese Datei:** Voraussetzung ist mindestens eine eingerichtete
+Karte. Öffne Claude in einem beliebigen Ordner und gib ihm den Text unterhalb
+der Linie. Hast du zwei Macs, öffne Claude auf dem Rechner, der dauerhaft
+läuft, nicht auf dem Laptop.
 
 ---
 
