@@ -7,7 +7,9 @@ frischt ein Job alle deine Ordner gemeinsam auf.
 
 **So benutzt du diese Datei:** Voraussetzung ist die Karte deines ersten
 Projektordners. Öffne Claude in einem beliebigen Ordner und gib ihm den Text
-unterhalb der Linie.
+unterhalb der Linie. Hast du zwei Macs, öffne Claude auf dem Rechner, der
+dauerhaft läuft, nicht auf dem Laptop. Der nächtliche Job läuft nur dort, mit
+der Rechner-Sperre aus mr4-launchd.md.
 
 ---
 

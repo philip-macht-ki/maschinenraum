@@ -4,8 +4,10 @@
 ein Index obendrüber. Sagst du "merk dir …", legt er eine solche Datei an,
 und eine neue Sitzung kennt den Fakt, ohne dass du ihn wiederholst.
 
-**So benutzt du diese Datei:** Öffne Claude in einem Projektordner und gib
-ihm den Text unterhalb der Linie.
+**So benutzt du diese Datei:** Öffne Claude in einem Projektordner und gib ihm
+den Text unterhalb der Linie. Hast du zwei Macs, öffne Claude auf dem Rechner,
+der dauerhaft läuft, nicht auf dem Laptop. Dein Gedächtnis gehört an genau
+einen Ort, sonst arbeitet der Laptop mit einem alten Stand.
 
 ---
 

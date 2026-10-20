@@ -33,6 +33,37 @@ pruefe_befehl() {
 echo "Claude-Profi-Setup, Stand $(date '+%d.%m.%Y %H:%M')"
 echo
 
+# Der Rechner. Zeitpläne gehören auf genau einen Mac, den Dauerrechner. Ein
+# Laptop holt verpasste Läufe beim Aufklappen nach und legt sonst doppelt ab.
+RECHNER="$(hostname -s)"
+ANZEIGENAME="$(scutil --get ComputerName 2>/dev/null || echo "$RECHNER")"
+zeile "INFO " "Rechner: $ANZEIGENAME (hostname -s: $RECHNER)"
+
+PM="$(pmset -g 2>/dev/null)"
+SCHLAF="$(printf '%s\n' "$PM" | awk '$1 == "sleep" { print $2; exit }')"
+NEUSTART="$(printf '%s\n' "$PM" | awk '$1 == "autorestart" { print $2; exit }')"
+DAUERRECHNER=0
+if [ "$SCHLAF" = 0 ] && [ "$NEUSTART" = 1 ]; then
+  DAUERRECHNER=1
+  zeile "GRUEN" "Energie: schläft nie, startet nach Stromausfall von allein (Dauerrechner)"
+elif [ "$SCHLAF" = 0 ]; then
+  zeile "GELB " "Energie: schläft nie, aber autorestart ist nicht 1. Nach einem Stromausfall bleibt er aus"
+  GELB=1
+else
+  zeile "GELB " "Energie: schläft nach ${SCHLAF:-?} Minuten. Auf einem Laptop normal, dann hier keine Zeitpläne einrichten"
+  GELB=1
+fi
+
+if tmutil destinationinfo 2>/dev/null | grep -q "^Name"; then
+  zeile "GRUEN" "Time Machine hat ein Ziel"
+elif [ "$DAUERRECHNER" = 1 ]; then
+  zeile "ROT  " "Time Machine hat kein Ziel. Auf dem Dauerrechner ist ein Backup Pflicht"
+  ROT=1
+else
+  zeile "GELB " "Time Machine hat kein Ziel"
+  GELB=1
+fi
+
 pruefe_befehl git 1
 pruefe_befehl brew 0
 pruefe_befehl uv 0

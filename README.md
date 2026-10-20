@@ -9,9 +9,21 @@ Wächter, der sich meldet, wenn etwas stehen bleibt.
 Du musst nichts davon selbst programmieren. Zu jedem Baustein gibt es eine
 Datei unter `einrichten/`, die du deinem eigenen Claude gibst.
 
+## Erst: auf welchem Rechner?
+
+Hast du zwei Macs, etwa einen Mac mini und einen Laptop, kommt der
+Werkzeugkasten nur auf den Rechner, der dauerhaft läuft. Dort liegen dein
+Claude, deine Helfer und jeder Zeitplan. Der Laptop ist nur das Fenster: Du
+arbeitest an ihm, aber jede Sitzung läuft auf dem Dauerrechner, über die
+SSH-Umgebung in der Claude-App, über Remote Control oder die
+Bildschirmfreigabe. Jede geplante Aufgabe läuft auf genau einem Rechner, sonst
+holt der Laptop sie beim Aufklappen nach und alles passiert doppelt. Wie du das
+einrichtest, steht im Kurs Der Dauerläufer.
+
 ## So benutzt du das
 
-1. Hol dir dieses Repo einmal nach `~/maschinenraum`. Sag deinem Claude:
+1. Hol dir dieses Repo einmal nach `~/maschinenraum`, auf dem Dauerrechner,
+   falls du einen hast. Sag deinem Claude:
    „Hol dir dieses Repo nach `~/maschinenraum` und richte
    `einrichten/mr0-bestand.md` ein."
 2. Für jeden weiteren Baustein: Sag deinem Claude „Richte mir `<datei>` aus
@@ -27,6 +39,8 @@ bash pruefen.sh
 ```
 
 zeigt eine Ampel: was schon eingerichtet ist, was fehlt, was freiwillig ist.
+Ganz oben stehen der Name des Rechners, ob er schläft und ob Time Machine ein
+Ziel hat. So siehst du sofort, ob du gerade auf dem Dauerrechner bist.
 
 ## Was hier drinsteckt
 
