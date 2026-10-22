@@ -38,7 +38,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Frag mich, ob es außer der eigenen Laufanzeige noch weitere gibt, die der
    Wächter mitlesen soll (zum Beispiel die eines Projektordners aus dem Basis-Setups),

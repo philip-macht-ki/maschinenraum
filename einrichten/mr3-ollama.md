@@ -4,7 +4,7 @@
 nichts verlässt deinen Mac. Passend für Vertrauliches, nicht für Aufgaben,
 die gutes Deutsch oder ein feines Urteil brauchen.
 
-**So benutzt du diese Datei:** Nur sinnvoll ab ungefähr 16 GB Arbeitsspeicher.
+**So benutzt du diese Datei:** Zum Ausprobieren ab 16 GB Arbeitsspeicher, sinnvoll ab 32 GB.
 Öffne Claude in einem beliebigen Ordner und gib ihm den Text unterhalb der
 Linie.
 
@@ -34,13 +34,16 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    um.
 
 2. Prüfe mit `command -v ollama`, ob Ollama installiert ist.
-   - Fehlt es: frag mich, ob du es mit Homebrew installieren darfst
-     (`brew install ollama`), und ob der Dienst automatisch starten soll
-     (`brew services start ollama`).
+   - Fehlt es: frag mich, ob du es installieren darfst. Dann lädst du die
+     Mac-App ohne Homebrew von https://ollama.com/download/Ollama-darwin.zip,
+     entpackst sie nach `~/Applications` (Ordner anlegen, falls er fehlt) und
+     öffnest sie einmal mit `open`. Sag mir vorher, dass gleich ein Fenster
+     von Ollama erscheint und was ich dort anklicken soll. Die App startet
+     den Dienst selbst und bringt den Befehl `ollama` mit.
 
 3. Schlag mir anhand meines Arbeitsspeichers ein Modell vor:
-   - 8 GB: ein sehr kleines Modell (2-3 Milliarden Parameter)
-   - 16 GB: ein Modell um 7-8 Milliarden Parameter
+   - 8 GB: kein lokales Modell. Sag mir das ehrlich und hör hier auf.
+   - 16 GB: nur zum Ausprobieren, ein Modell um 7 bis 8 Milliarden Parameter
    - 32 GB: ein Modell um 14 Milliarden Parameter
    - 64 GB und mehr: größere Modelle möglich, aber auch dort ist mehr nicht
      automatisch besser für unsere Zwecke
@@ -55,7 +58,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Was du mich fragen musst
 
-- ob Homebrew/Ollama installiert werden darf
+- ob Ollama installiert werden darf
 - ob der vorgeschlagene Modellname passt
 
 Rate nichts. Wo du unsicher bist, frag.

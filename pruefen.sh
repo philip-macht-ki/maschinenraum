@@ -1,7 +1,7 @@
 #!/bin/bash
 # pruefen.sh: Ampel ueber den Stand deines Werkzeugkastens. Ein Blick, keine
-# Handlung. GRUEN = passt, GELB = fehlt etwas Freiwilliges, ROT = fehlt etwas
-# Noetiges.
+# Handlung. GRUEN = passt, GELB = fehlt etwas Freiwilliges oder erst spaeter
+# Gebrauchtes, ROT = fehlt etwas, das Teil 1 jetzt braucht.
 #
 # Aufruf: pruefen.sh
 
@@ -33,8 +33,9 @@ pruefe_befehl() {
 echo "Claude-Profi-Setup, Stand $(date '+%d.%m.%Y %H:%M')"
 echo
 
-# Der Rechner. Zeitpläne gehören auf genau einen Mac, den Dauerrechner. Ein
-# Laptop holt verpasste Läufe beim Aufklappen nach und legt sonst doppelt ab.
+# Der Rechner. Fuer Teil 1 und 2 ist jeder Mac recht. Zeitplaene aus Teil 3
+# laufen nur, solange der Mac an, wach und angemeldet ist; das zeigt die
+# Energie-Zeile. Nichts davon ist rot, es ist ein Hinweis.
 RECHNER="$(hostname -s)"
 ANZEIGENAME="$(scutil --get ComputerName 2>/dev/null || echo "$RECHNER")"
 zeile "INFO " "Rechner: $ANZEIGENAME (hostname -s: $RECHNER)"
@@ -42,33 +43,35 @@ zeile "INFO " "Rechner: $ANZEIGENAME (hostname -s: $RECHNER)"
 PM="$(pmset -g 2>/dev/null)"
 SCHLAF="$(printf '%s\n' "$PM" | awk '$1 == "sleep" { print $2; exit }')"
 NEUSTART="$(printf '%s\n' "$PM" | awk '$1 == "autorestart" { print $2; exit }')"
-DAUERRECHNER=0
 if [ "$SCHLAF" = 0 ] && [ "$NEUSTART" = 1 ]; then
-  DAUERRECHNER=1
-  zeile "GRUEN" "Energie: schläft nie, startet nach Stromausfall von allein (Dauerrechner)"
+  zeile "GRUEN" "Energie: schläft nie und startet nach einem Stromausfall von allein"
 elif [ "$SCHLAF" = 0 ]; then
-  zeile "GELB " "Energie: schläft nie, aber autorestart ist nicht 1. Nach einem Stromausfall bleibt er aus"
+  zeile "GELB " "Energie: schläft nie, startet nach einem Stromausfall aber nicht von allein (erst für Zeitpläne in Teil 3 wichtig)"
   GELB=1
 else
-  zeile "GELB " "Energie: schläft nach ${SCHLAF:-?} Minuten. Auf einem Laptop normal, dann hier keine Zeitpläne einrichten"
+  zeile "GELB " "Energie: schläft nach ${SCHLAF:-?} Minuten. Für Teil 1 und 2 egal; Zeitpläne in Teil 3 laufen nur, solange der Mac wach ist"
   GELB=1
 fi
 
 if tmutil destinationinfo 2>/dev/null | grep -q "^Name"; then
-  zeile "GRUEN" "Time Machine hat ein Ziel"
-elif [ "$DAUERRECHNER" = 1 ]; then
-  zeile "ROT  " "Time Machine hat kein Ziel. Auf dem Dauerrechner ist ein Backup Pflicht"
-  ROT=1
+  zeile "GRUEN" "Backup: Time Machine hat ein Ziel"
 else
-  zeile "GELB " "Time Machine hat kein Ziel"
+  zeile "GELB " "Backup: Time Machine hat kein Ziel (freiwillig, aber empfohlen: Systemeinstellungen, Allgemein, Time Machine)"
   GELB=1
 fi
 
-pruefe_befehl git 1
-pruefe_befehl brew 0
+# Nichts davon muss jemand selbst installieren. Der Werkzeugkasten kommt ohne
+# Git aus (werkzeuge/aktualisieren.sh), claude legt werkzeuge/claude-starter.sh
+# fuer Teil 3 an, uv und graphify kommen in Teil 4 in den Benutzerordner.
+pruefe_befehl git 0
 pruefe_befehl uv 0
 pruefe_befehl graphify 0
-pruefe_befehl claude 1
+if command -v claude >/dev/null 2>&1; then
+  zeile "GRUEN" "claude gefunden ($(command -v claude))"
+else
+  zeile "GELB " "claude fehlt im Suchpfad (erst für Zeitpläne in Teil 3 nötig, dann legt dein Claude einen Starter an)"
+  GELB=1
+fi
 pruefe_befehl codex 0
 pruefe_befehl ollama 0
 
@@ -88,14 +91,14 @@ if [ -d "$HOME/.claude/agents" ]; then
     GELB=1
   fi
 else
-  zeile "GELB " "~/.claude/agents fehlt noch (Helfer nicht eingerichtet)"
+  zeile "GELB " "~/.claude/agents fehlt noch (die Helfer kommen in Teil 1, der Rechercheur aus dem Basis-Setup)"
   GELB=1
 fi
 
 if command -v codex-do >/dev/null 2>&1 || [ -x "$HOME/.local/bin/codex-do" ]; then
   zeile "GRUEN" "codex-do gefunden"
 else
-  zeile "GELB " "codex-do fehlt (freiwillig, sehr empfohlen)"
+  zeile "GELB " "codex-do fehlt (freiwillig, kommt in Teil 2)"
   GELB=1
 fi
 

@@ -45,13 +45,21 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Zeig mir den Namen dieses Rechners mit `hostname -s` und frag mich, ob
    das der Rechner ist, der dauerhaft läuft. Ist es ein Laptop und ich habe
    einen Dauerrechner, hör hier auf und sag mir, dass ich die Sitzung dort
    starten soll. Schau außerdem in betrieb/zeitplaene.md, ob derselbe Job
-   schon auf einem anderen Rechner eingetragen ist.
+   schon auf einem anderen Rechner eingetragen ist. Sag mir ehrlich: Der
+   Job läuft ohne offene Claude-App, aber nur, solange dieser Mac an, wach
+   und mit meinem Benutzer angemeldet ist. Ein schlafender Mac holt den
+   Lauf beim Aufwachen nach, ein ausgeschalteter gar nicht.
+
+   Ruft der Job `claude` auf und fehlt `command -v claude`, führe
+   `bash ~/maschinenraum/werkzeuge/claude-starter.sh` aus. Das legt einen
+   kleinen Starter in ~/.local/bin an, der die Version aus der Claude-App
+   nutzt. Kein Homebrew, kein npm.
 
 3. Frag mich: welcher Befehl soll laufen, wie oft (Uhrzeit, oder jede
    wie-viele Minuten/Stunden), und in welchem Arbeitsordner (voller Pfad -

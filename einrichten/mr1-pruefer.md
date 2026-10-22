@@ -30,7 +30,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Prüfe, ob ~/.claude/agents/pruefer.md schon existiert. Existiert sie
    schon, zeig mir den Unterschied zur Vorlage und lass mich entscheiden.

@@ -34,7 +34,7 @@ aufrufbar. Das probierst du in einer neuen Sitzung.
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Prüfe, ob ~/.claude/agents/sichter.md oder web-rechercheur.md schon
    existieren. Existiert eine davon schon, zeig mir den Unterschied zur

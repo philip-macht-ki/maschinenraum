@@ -39,13 +39,16 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Prüfe mit `command -v codex`, ob die Codex-Kommandozeile schon
    installiert ist.
-   - Fehlt sie: frag mich, ob du sie installieren darfst
-     (`npm install -g @openai/codex` oder, falls Homebrew da ist,
-     `brew install --cask codex`), und warte auf mein Ja.
+   - Fehlt sie: frag mich, ob du sie installieren darfst, und warte auf
+     mein Ja. Dann lädst du sie ohne Homebrew und ohne npm: aus der
+     neuesten Veröffentlichung auf github.com/openai/codex/releases das
+     Archiv für macOS mit Apple-Chip (Name enthält `aarch64-apple-darwin`),
+     entpackst es, legst die Datei als `~/.local/bin/codex` ab und machst
+     sie ausführbar. Kein Admin-Passwort. Zeig mir danach `codex --version`.
    - Danach: führe `codex login` selbst aus. Das startet einen lokalen
      Anmeldeserver und öffnet von selbst den Anmeldedialog im Browser. Sag
      mir, dass ich dort meine Anmeldung mit meinem ChatGPT-Konto bestätigen

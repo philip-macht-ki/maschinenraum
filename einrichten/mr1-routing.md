@@ -29,7 +29,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Frag mich, in welche CLAUDE.md die Regel soll: die allgemeine unter
    ~/.claude/CLAUDE.md (gilt in jedem Projekt) oder die dieses Ordners
