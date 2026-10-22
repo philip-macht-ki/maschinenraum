@@ -38,7 +38,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Frag mich, ob es außer der eigenen Laufanzeige noch weitere gibt, die der
    Wächter mitlesen soll (zum Beispiel die eines Projektordners aus dem Basis-Setups),
@@ -49,6 +49,11 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    anderes Präfix, das bei dir wiederkehrt), nicht nur einzelne Jobnamen.
    Trag alles in ~/maschinenraum/betrieb/waechter.conf ein, nach dem Muster,
    das in werkzeuge/waechter.sh als Kommentar steht.
+
+   Sag mir dazu in einem Satz: Liegt Codex aus mr2-codex in ~/.local/bin,
+   hält der Wächter es einmal im Monat selbst aktuell
+   (werkzeuge/codex-aktualisieren.sh). Schlägt das fehl, kommt es als
+   Befund wie jeder andere Fehler.
 
 3. Richte einen launchd-Job ein, der morgens werkzeuge/waechter.sh aufruft,
    genau nach dem Ablauf aus mr4-launchd.md (Vorlage, plutil-Prüfung,

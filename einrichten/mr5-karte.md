@@ -46,9 +46,25 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
-2. Frag mich, welche Projektordner (volle Pfade) auf die Karte sollen. Nur
+2. Prüfe mit `command -v graphify`, ob das Kartenwerkzeug da ist. Fehlt es,
+   frag mich, ob du es installieren darfst. Dann ohne Homebrew und ohne
+   Admin-Passwort: fehlt `uv`, hol es mit dem offiziellen Installer in den
+   Benutzerordner (`curl -LsSf https://astral.sh/uv/install.sh | sh`), danach
+   `~/.local/bin/uv tool install graphifyy`. Zeig mir `graphify --help | head -5`.
+
+2a. Für den Haken nach jedem Commit braucht es echtes Git. Prüf das mit
+   `xcode-select -p` (ohne Ausgabe oder mit Fehler fehlt es; `command -v
+   git` allein reicht nicht, weil macOS dort nur einen Platzhalter hat).
+   Fehlt es, sag mir: „Gleich öffnet sich ein Fenster von Apple für die
+   Entwicklerwerkzeuge. Klick auf Installieren und warte, bis es fertig
+   ist, das dauert einige Minuten.“ Dann führe `xcode-select --install`
+   aus und warte, bis `xcode-select -p` einen Pfad zeigt. Will ich das
+   nicht, läuft die Karte trotzdem, nur ohne Haken, mit dem nächtlichen
+   Lauf.
+
+2b. Frag mich, welche Projektordner (volle Pfade) auf die Karte sollen. Nur
    Ordner, die ich ausdrücklich nenne, keine Annahme.
 
 3. Prüfe je Ordner, ob dort schon graphify-out/ existiert. Fehlt es, frag,

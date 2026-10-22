@@ -5,8 +5,8 @@ dir schon eingerichtet ist, holt den Werkzeugkasten nach `~/maschinenraum` und
 prüft mit der Ampel, ob die Grundausstattung da ist.
 
 **So benutzt du diese Datei:** Öffne Claude in einem beliebigen Ordner und
-gib ihm den Text unterhalb der Linie. Hast du zwei Macs, öffne Claude auf dem
-Rechner, der dauerhaft läuft, nicht auf dem Laptop.
+gib ihm den Text unterhalb der Linie. Du tippst keinen Befehl, das macht
+dein Claude.
 
 ---
 
@@ -16,83 +16,80 @@ läuft.
 
 ## Ziel
 
-github.com/philip-macht-ki/maschinenraum liegt nach dieser Einrichtung unter
-~/maschinenraum. Ein Blick auf betrieb/bestand.md sagt mir und dir jederzeit,
-welche Helfer, Skills, Routinen und Karten ich schon habe, ohne dass wir das
-in jeder neuen Sitzung neu zusammensuchen.
+Der Werkzeugkasten von github.com/philip-macht-ki/maschinenraum liegt nach
+dieser Einrichtung unter ~/maschinenraum. Ein Blick auf betrieb/bestand.md
+sagt mir und dir jederzeit, welche Helfer, Skills und Routinen ich schon
+habe, ohne dass wir das in jeder neuen Sitzung neu zusammensuchen.
 
 ## Abnahme
 
 Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 1. Zeig mir die Ausgabe von `bash ~/maschinenraum/pruefen.sh`. Sie darf kein
-   ROT enthalten, sonst kläre erst, woran es liegt. Ist es die Zeile Time
-   Machine, sag mir das. Ein Backup richte ich mit dem Kurs Der Dauerläufer,
-   Lektion D4-2 ein.
+   ROT enthalten, sonst kläre erst, woran es liegt. Gelbe Zeilen erklärst du
+   mir in einem Satz; sie gehören zu späteren Teilen oder sind freiwillig.
 2. Zeig mir den Inhalt von `~/maschinenraum/betrieb/bestand.md`.
-3. Zeig mir `git -C ~/maschinenraum log -1 --oneline`.
+3. Zeig mir `cat ~/maschinenraum/betrieb/stand.txt`: die Kennung des
+   installierten Standes, mit Datum.
 
 ## Schritte
 
-1. Zeig mir den Namen dieses Rechners mit `hostname -s` und frag mich, ob
-   ich einen zweiten Mac habe, der dauerhaft läuft. Habe ich einen und du
-   läufst gerade auf dem Laptop, hör hier auf und sag mir, dass ich die
-   Sitzung auf dem Dauerrechner starten soll. Der Werkzeugkasten gehört nur
-   dorthin.
+1. Zeig mir den Namen dieses Rechners mit `scutil --get ComputerName`. Frag
+   mich, ob ich einen zweiten Mac habe, der dauerhaft läuft. Habe ich einen,
+   schreib das in die Liste: Zeitpläne aus Teil 3 gehören später nur auf
+   einen der beiden Rechner. Für Teil 1 ist jeder Mac recht.
 
-2. Prüfe, ob `~/maschinenraum` existiert und ein Git-Ordner ist. Wenn ja,
-   sag mir das und mach mit Schritt 4 weiter, ohne etwas zu klonen.
+2. Prüfe, ob `~/maschinenraum` existiert. Wenn ja, sag mir das und führe
+   `bash ~/maschinenraum/werkzeuge/aktualisieren.sh` aus, statt neu zu laden.
 
-3. Existiert er nicht: frag mich, ob du GitHub einmalig mit dieser
-   Kommandozeile verbinden darfst (falls das noch nicht gemacht wurde), und
-   danach `git clone https://github.com/philip-macht-ki/maschinenraum
-   ~/maschinenraum` ausführen.
+3. Existiert er nicht: lade das öffentliche Archiv, ohne Git und ohne
+   GitHub-Konto:
+   mkdir -p ~/maschinenraum && curl -fsSL https://github.com/philip-macht-ki/maschinenraum/archive/refs/heads/main.tar.gz | tar -xz -C ~/maschinenraum --strip-components 1
+   Danach sofort `bash ~/maschinenraum/werkzeuge/aktualisieren.sh`. Das
+   schreibt die Kennung des Standes nach betrieb/stand.txt und merkt sich
+   jede Datei, damit spätere Updates erkennen, was ich selbst geändert
+   habe, und es vorher sichern.
+   Ich tippe dabei nichts. Fragt die Claude-App um Erlaubnis, sag mir in
+   einem Satz, was gleich passiert.
 
 4. Führe `bash ~/maschinenraum/pruefen.sh` aus und zeig mir die Ausgabe
    wörtlich.
 
 5. Schau nach, was bei mir schon eingerichtet ist:
-   - Dateien in `~/.claude/agents/`
-   - Skills, die zu meinem Vorhaben passen könnten (kurz, keine Liste aller
+   - Dateien in `~/.claude/agents/`, vor allem der Rechercheur aus dem
+     Basis-Setup
+   - Skills, die zu meiner Arbeit passen könnten (kurz, keine Liste aller
      Skills)
-   - geplante Aufgaben an allen fünf Stellen, an denen auf einem Mac etwas
+   - geplante Aufgaben an den Stellen, an denen auf einem Mac etwas
      eingeplant sein kann:
      1. geplante Aufgaben in Claude Code, in `~/.claude/scheduled-tasks/`
      2. Cowork-Aufgaben, in `~/Documents/Claude/Scheduled/`
      3. Routinen in meinem Claude-Konto. Die siehst du nicht als Datei, frag
-        mich, welche ich in der App sehe und auf welchem Rechner sie laufen
-     4. eigene launchd-Jobs in `~/Library/LaunchAgents/` und mit
-        `launchctl list`, soweit an meinem Benutzernamen erkennbar
+        mich, welche ich in der App sehe
+     4. eigene Zeitpläne in `~/Library/LaunchAgents/` und mit
+        `launchctl list`, soweit an meinem Benutzernamen oder einem
+        eigenen Präfix erkennbar
      5. cron, mit `crontab -l`
-   - ob unter diesem oder einem anderen Projektordner schon eine
-     `graphify-out/`-Karte liegt
+   - ob schon Karten über Projekte liegen:
+     `find ~ -maxdepth 4 -type d -name graphify-out 2>/dev/null`
 
-6. Frag mich zwei Dinge und trag die Antwort in die Liste ein:
-   - willst du Codex einrichten (ja/nein)?
-   - willst du ein lokales Modell (Ollama) einrichten (ja/nein)?
-
-7. Schreib das Ergebnis aus Schritt 1, 5 und 6 als Liste nach
+6. Schreib das Ergebnis aus Schritt 1 und 5 als Liste nach
    `~/maschinenraum/betrieb/bestand.md`, mit Datum und dem Namen dieses
-   Rechners in der ersten Zeile. Mindestens vier Zeilen. Hab ich einen
-   zweiten Mac, schreib dazu, dass dort an denselben fünf Stellen nichts
-   takten darf, was hier schon läuft.
+   Rechners in der ersten Zeile. Mindestens vier Zeilen.
 
-8. Führe die Abnahme aus.
+7. Führe die Abnahme aus.
 
 ## Verbotsliste
 
 - Nichts an `~/.claude/`, einer CLAUDE.md, `~/Library/LaunchAgents/` oder
   `~/.local/bin/` ändern. Diese Datei liest nur und legt `~/maschinenraum`
   an, nichts sonst.
-- Keine Konten anlegen außer nach ausdrücklicher Erlaubnis für GitHub.
+- Keine Konten anlegen, nichts installieren.
 
 ## Was du mich fragen musst
 
 - ob ich einen zweiten Mac habe, der dauerhaft läuft
 - welche Routinen ich in der App sehe
-- ob GitHub verbunden werden darf, falls nötig
-- ob ich Codex will
-- ob ich ein lokales Modell will
 
 Rate nichts. Wo du unsicher bist, frag.
 
@@ -101,7 +98,6 @@ Rate nichts. Wo du unsicher bist, frag.
 Kurz:
 - Ampel-Ausgabe von pruefen.sh
 - Inhalt von betrieb/bestand.md
-- meine zwei Entscheidungen (Codex, lokales Modell)
 ```
 
 ---

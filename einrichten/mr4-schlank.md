@@ -37,7 +37,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    beantworten lässt (zum Beispiel "ist dieser Satz auf Deutsch grammatisch
    richtig: ...").
 
-2. Führe aus:
+2. Fehlt `command -v claude`, führe zuerst
+   `bash ~/maschinenraum/werkzeuge/claude-starter.sh` aus. Dann führe aus:
    time claude -p "<frage>"
    und danach:
    time claude -p "<frage>" --tools "" --strict-mcp-config \

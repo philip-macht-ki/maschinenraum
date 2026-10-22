@@ -40,7 +40,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Frag mich nach einem Kurznamen für das Vorhaben (ein Wort, etwa
    „Buchhaltung“ oder „Newsletter“). Gibt es im Ordner schon eine Datei, die

@@ -26,6 +26,11 @@
 # wird das selbst zu einem Befund statt den Takt stillschweigend zu
 # uebergehen.
 #
+# Einmal im Monat haelt der Waechter ausserdem Codex aktuell
+# (werkzeuge/codex-aktualisieren.sh), sofern Codex ueber mr2-codex in
+# ~/.local/bin liegt. Ein Fehler dabei wird zum Befund. Merker:
+# betrieb/codex-geprueft. MR_CODEX=0 schaltet das ab.
+#
 # MR_TEST=1 schreibt die Mitteilung nur ins Protokoll statt sie wirklich
 # auszuloesen: so testest du den Waechter, ohne den Bildschirm zu bemuehen.
 
@@ -143,6 +148,19 @@ if [ "${#PRAEFIXE[@]}" -gt 0 ] && command -v launchctl >/dev/null; then
       fi
     done < <(launchctl list 2>/dev/null | tail -n +2)
   done
+fi
+
+# 4. Einmal im Monat: Codex aktuell halten. Nicht am Kalendertag festgemacht,
+# sondern am Merker, damit ein Monat ohne wachen Mac am 1. nicht ausfaellt.
+MERKER="$HIER/betrieb/codex-geprueft"
+if [ "${1:-}" != "--probe" ] && [ "${MR_CODEX:-1}" = "1" ] && [ -x "$HOME/.local/bin/codex" ] \
+   && { [ ! -f "$MERKER" ] || [ -n "$(find "$MERKER" -mtime +30 2>/dev/null)" ]; }; then
+  ERGEBNIS="$(bash "$HIER/werkzeuge/codex-aktualisieren.sh" 2>&1 | tail -1)"
+  echo "$JETZT $ERGEBNIS" >> "$LOG_DIR/codex-aktualisieren.log"
+  case "$ERGEBNIS" in
+    OK*) touch "$MERKER" ;;
+    *) BEFUNDE+=("Codex-Update: $ERGEBNIS") ;;
+  esac
 fi
 
 # Ausgabe: Befund immer schreiben, Mitteilung nur bei Treffern (oder --probe).

@@ -45,13 +45,30 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Zeig mir den Namen dieses Rechners mit `hostname -s` und frag mich, ob
    das der Rechner ist, der dauerhaft läuft. Ist es ein Laptop und ich habe
    einen Dauerrechner, hör hier auf und sag mir, dass ich die Sitzung dort
    starten soll. Schau außerdem in betrieb/zeitplaene.md, ob derselbe Job
-   schon auf einem anderen Rechner eingetragen ist.
+   schon auf einem anderen Rechner eingetragen ist. Sag mir ehrlich: Der
+   Job läuft ohne offene Claude-App, aber nur, solange dieser Mac an, wach
+   und mit meinem Benutzer angemeldet ist. Ein schlafender Mac holt den
+   Lauf beim Aufwachen nach, ein ausgeschalteter gar nicht.
+
+   Backup vor dem ersten Zeitplan: Steht in betrieb/zeitplaene.md noch
+   kein Job, prüf mit `tmutil destinationinfo`, ob Time Machine ein Ziel
+   hat. Hat es keins, sag mir: „Dein Mac hat kein Backup. Was die
+   Zeitpläne erzeugen, liegt dann nur hier.“ und frag ausdrücklich, ob
+   ich trotzdem ohne Backup weitermachen will. Ohne mein ausdrückliches Ja
+   hörst du hier auf und sagst mir, wo ich Time Machine einschalte
+   (Systemeinstellungen, Allgemein, Time Machine). Mein Ja schreibst du mit
+   Datum in betrieb/zeitplaene.md.
+
+   Ruft der Job `claude` auf und fehlt `command -v claude`, führe
+   `bash ~/maschinenraum/werkzeuge/claude-starter.sh` aus. Das legt einen
+   kleinen Starter in ~/.local/bin an, der die Version aus der Claude-App
+   nutzt. Kein Homebrew, kein npm.
 
 3. Frag mich: welcher Befehl soll laufen, wie oft (Uhrzeit, oder jede
    wie-viele Minuten/Stunden), und in welchem Arbeitsordner (voller Pfad -

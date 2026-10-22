@@ -76,7 +76,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 
 ## Schritte
 
-1. git -C ~/maschinenraum pull --ff-only
+1. bash ~/maschinenraum/werkzeuge/aktualisieren.sh
 
 2. Frag mich, ob ich neben ~/maschinenraum/betrieb/laufanzeige.md noch eine
    weitere Laufanzeige habe (zum Beispiel die eines anderen Projektordners),
