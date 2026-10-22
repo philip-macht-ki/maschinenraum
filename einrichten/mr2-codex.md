@@ -49,6 +49,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
      Archiv für macOS mit Apple-Chip (Name enthält `aarch64-apple-darwin`),
      entpackst es, legst die Datei als `~/.local/bin/codex` ab und machst
      sie ausführbar. Kein Admin-Passwort. Zeig mir danach `codex --version`.
+     Für spätere Updates gibt es `bash ~/maschinenraum/werkzeuge/codex-aktualisieren.sh`;
+     in Teil 3 ruft der Wächter es einmal im Monat selbst auf.
    - Danach: führe `codex login` selbst aus. Das startet einen lokalen
      Anmeldeserver und öffnet von selbst den Anmeldedialog im Browser. Sag
      mir, dass ich dort meine Anmeldung mit meinem ChatGPT-Konto bestätigen

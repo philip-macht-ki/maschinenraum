@@ -29,7 +29,8 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    ROT enthalten, sonst kläre erst, woran es liegt. Gelbe Zeilen erklärst du
    mir in einem Satz; sie gehören zu späteren Teilen oder sind freiwillig.
 2. Zeig mir den Inhalt von `~/maschinenraum/betrieb/bestand.md`.
-3. Zeig mir `ls ~/maschinenraum/einrichten`.
+3. Zeig mir `cat ~/maschinenraum/betrieb/stand.txt`: die Kennung des
+   installierten Standes, mit Datum.
 
 ## Schritte
 
@@ -44,6 +45,10 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 3. Existiert er nicht: lade das öffentliche Archiv, ohne Git und ohne
    GitHub-Konto:
    mkdir -p ~/maschinenraum && curl -fsSL https://github.com/philip-macht-ki/maschinenraum/archive/refs/heads/main.tar.gz | tar -xz -C ~/maschinenraum --strip-components 1
+   Danach sofort `bash ~/maschinenraum/werkzeuge/aktualisieren.sh`. Das
+   schreibt die Kennung des Standes nach betrieb/stand.txt und merkt sich
+   jede Datei, damit spätere Updates erkennen, was ich selbst geändert
+   habe, und es vorher sichern.
    Ich tippe dabei nichts. Fragt die Claude-App um Erlaubnis, sag mir in
    einem Satz, was gleich passiert.
 
@@ -61,9 +66,12 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
      2. Cowork-Aufgaben, in `~/Documents/Claude/Scheduled/`
      3. Routinen in meinem Claude-Konto. Die siehst du nicht als Datei, frag
         mich, welche ich in der App sehe
-     4. eigene Zeitpläne in `~/Library/LaunchAgents/`, soweit an meinem
-        Benutzernamen erkennbar
+     4. eigene Zeitpläne in `~/Library/LaunchAgents/` und mit
+        `launchctl list`, soweit an meinem Benutzernamen oder einem
+        eigenen Präfix erkennbar
      5. cron, mit `crontab -l`
+   - ob schon Karten über Projekte liegen:
+     `find ~ -maxdepth 4 -type d -name graphify-out 2>/dev/null`
 
 6. Schreib das Ergebnis aus Schritt 1 und 5 als Liste nach
    `~/maschinenraum/betrieb/bestand.md`, mit Datum und dem Namen dieses

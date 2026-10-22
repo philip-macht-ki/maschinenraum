@@ -56,6 +56,15 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
    und mit meinem Benutzer angemeldet ist. Ein schlafender Mac holt den
    Lauf beim Aufwachen nach, ein ausgeschalteter gar nicht.
 
+   Backup vor dem ersten Zeitplan: Steht in betrieb/zeitplaene.md noch
+   kein Job, prüf mit `tmutil destinationinfo`, ob Time Machine ein Ziel
+   hat. Hat es keins, sag mir: „Dein Mac hat kein Backup. Was die
+   Zeitpläne erzeugen, liegt dann nur hier.“ und frag ausdrücklich, ob
+   ich trotzdem ohne Backup weitermachen will. Ohne mein ausdrückliches Ja
+   hörst du hier auf und sagst mir, wo ich Time Machine einschalte
+   (Systemeinstellungen, Allgemein, Time Machine). Mein Ja schreibst du mit
+   Datum in betrieb/zeitplaene.md.
+
    Ruft der Job `claude` auf und fehlt `command -v claude`, führe
    `bash ~/maschinenraum/werkzeuge/claude-starter.sh` aus. Das legt einen
    kleinen Starter in ~/.local/bin an, der die Version aus der Claude-App

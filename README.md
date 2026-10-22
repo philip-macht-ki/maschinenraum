@@ -24,7 +24,11 @@ Du brauchst kein GitHub-Konto und tippst keinen Befehl.
    dass sie es behauptet.
 
 Vor jeder Einrichtung holt dein Claude mit `werkzeuge/aktualisieren.sh` die
-neueste Fassung. Deine eigenen Dateien in `betrieb/` bleiben dabei unberührt.
+neueste Fassung. Es zeigt dir den alten und den neuen Stand und welche
+Dateien sich geändert haben; die Kennung steht in `betrieb/stand.txt`.
+Hast du selbst eine Datei außerhalb von `betrieb/` geändert, wird sie vor
+dem Überschreiben als `<datei>.vor-update-<datum>` gesichert. Deine eigenen
+Dateien in `betrieb/` bleiben ohnehin unberührt.
 
 ## Ein Rechner oder zwei?
 
@@ -33,6 +37,11 @@ der Mac an, wach und mit deinem Benutzer angemeldet ist. Hast du zwei Macs,
 gehört jeder Zeitplan auf genau einen davon, am besten den, der dauerhaft
 läuft. Sonst holt der Laptop verpasste Läufe beim Aufklappen nach, und alles
 passiert doppelt.
+
+Der Laptop kann dabei das Fenster sein: Du arbeitest an ihm, aber die
+Sitzung läuft auf dem Rechner, der dauerhaft läuft, etwa über die
+SSH-Umgebung der Claude-App, über Remote Control oder die
+Bildschirmfreigabe von macOS.
 
 ## Ein Blick auf den Stand
 
