@@ -1,5 +1,7 @@
 # Für Codex
 
+Vor jeder Einrichtung oder Änderung zuerst `bash werkzeuge/aktualisieren.sh` ausführen; es holt die neueste Vorlage und bewahrt deine Einstellungen und Inhalte.
+
 Dieser Werkzeugkasten ist für Claude geschrieben. Die Baupläne unter `einrichten/` führst du
 genauso aus; wo dort „Claude“ steht, bist du gemeint.
 

@@ -23,9 +23,7 @@ Du brauchst kein GitHub-Konto und tippst keinen Befehl.
    ändert, und zeigt dir am Ende, dass sie wirklich funktioniert, nicht nur,
    dass sie es behauptet.
 
-Vor jeder Einrichtung holt dein Claude mit `werkzeuge/aktualisieren.sh` die
-neueste Fassung. Es zeigt dir den alten und den neuen Stand und welche
-Dateien sich geändert haben; die Kennung steht in `betrieb/stand.txt`.
+Vor jeder Einrichtung oder Änderung führt dein Claude zuerst `bash werkzeuge/aktualisieren.sh` aus; es holt die neueste Fassung und bewahrt deine Einstellungen und Inhalte. Es zeigt dir den alten und den neuen Stand und welche Dateien sich geändert haben; die Kennung steht in `betrieb/stand.txt`.
 Hast du selbst eine Datei außerhalb von `betrieb/` geändert, wird sie vor
 dem Überschreiben als `<datei>.vor-update-<datum>` gesichert. Deine eigenen
 Dateien in `betrieb/` bleiben ohnehin unberührt.
