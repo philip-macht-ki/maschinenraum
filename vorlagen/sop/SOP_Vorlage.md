@@ -46,6 +46,10 @@ ungefähr kostet. Abos und Obergrenzen.>
 <Was entschieden ist und nicht jedes Mal neu diskutiert wird. Ton, Freigaben,
 Verbote. Jede Regel mit Datum und, wenn es sie gibt, dem Anlass.>
 
+- Jede Fehlermeldung sagt in Klartext, was nicht ging, warum und was zu tun
+  ist. Ein Exitcode oder eine Fehlernummer allein ist keine Meldung, sondern
+  steht höchstens dahinter in Klammern.
+
 ## 7. Die Fallen
 
 Jede ist einmal wirklich passiert.
