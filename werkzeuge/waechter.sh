@@ -14,7 +14,8 @@
 #                                hinterlassen haben, sonst gilt er als verpasst
 #   praefix <text>              launchd-Jobs, deren Label mit <text> beginnt,
 #                                werden per launchctl list auf ihren letzten
-#                                Exitcode geprueft
+#                                Exitcode geprueft; der Befund nennt den Grund
+#                                aus dem Protokoll des Jobs in Klartext
 #
 # Jede Zeile in waechter.conf wird geprueft: eine falsche Feldanzahl, eine
 # nicht-numerische Stundenzahl oder eine unbekannte Direktive wird selbst
@@ -135,6 +136,33 @@ if [ "${#TAKTE[@]}" -gt 0 ]; then
 fi
 
 # 3. launchd-Jobs mit Praefix: letzter Exitcode ungleich 0.
+# Ein Befund nennt den Grund in Klartext, nicht nur den Exitcode: dafuer liest
+# grund_aus_protokoll die Protokolle, die launchd fuer den Job fuehrt, und
+# uebersetzt die letzte Fehlerzeile. Findet sich keine, sagt der Befund das.
+grund_aus_protokoll() {
+  # grund_aus_protokoll <label>: eine Zeile Klartext oder leer
+  local label="$1" info pfad zeile=""
+  info="$(launchctl print "gui/$(id -u)/$label" 2>/dev/null)"
+  for pfad in $(printf '%s\n' "$info" | sed -nE 's/^[[:space:]]*(stderr|stdout) path = (.*)$/\2/p' | sort -u); do
+    [ -f "$pfad" ] || continue
+    zeile="$(tail -n 80 "$pfad" | grep -E '(Error|Exception|FEHLER|Fehler|failed|abgebrochen|denied|not permitted|No such file|nicht gefunden|antwortet nicht)' | tail -1)"
+    [ -n "$zeile" ] && break
+  done
+  [ -z "$zeile" ] && return 0
+  case "$zeile" in
+    *"Resource deadlock avoided"*|*"Errno 11"*)
+      echo "Google Drive hat eine Datei gerade nicht herausgegeben (vermutlich noch nicht fertig synchronisiert)" ;;
+    *"No such file"*|*"nicht gefunden"*)
+      echo "eine Datei oder ein Ordner fehlte" ;;
+    *"denied"*|*"not permitted"*)
+      echo "der Zugriff auf eine Datei wurde verweigert (oft fehlt der Festplattenvollzugriff)" ;;
+    *"antwortet nicht"*|*"Connection refused"*)
+      echo "ein Dienst, den der Job braucht, lief nicht" ;;
+    *)
+      echo "Fehlermeldung im Protokoll: $(printf '%s' "$zeile" | cut -c1-160)" ;;
+  esac
+}
+
 if [ "${#PRAEFIXE[@]}" -gt 0 ] && command -v launchctl >/dev/null; then
   for praefix in "${PRAEFIXE[@]}"; do
     while IFS=$'\t' read -r pid status label; do
@@ -144,7 +172,12 @@ if [ "${#PRAEFIXE[@]}" -gt 0 ] && command -v launchctl >/dev/null; then
       esac
       [ "$status" = "-" ] && continue
       if [ "$status" != "0" ]; then
-        BEFUNDE+=("launchd $label: letzter Exitcode $status")
+        grund="$(grund_aus_protokoll "$label")"
+        if [ -n "$grund" ]; then
+          BEFUNDE+=("Der Job $label ist beim letzten Lauf abgebrochen. Grund: $grund. (Exitcode $status)")
+        else
+          BEFUNDE+=("Der Job $label ist beim letzten Lauf abgebrochen, das Protokoll nennt keinen Grund. Sag deinem Claude: Prüf den Job $label und starte ihn neu. (Exitcode $status)")
+        fi
       fi
     done < <(launchctl list 2>/dev/null | tail -n +2)
   done
