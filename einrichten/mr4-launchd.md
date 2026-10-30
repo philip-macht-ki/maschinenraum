@@ -154,6 +154,12 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 - Den Befehl nie direkt in die plist schreiben, nur über das Jobskript in
   betrieb/jobs/.
 - Im Befehl keine zusätzlichen Schritte einbauen, die ich nicht genannt habe.
+- Keinen Job, der bei einem Fehler nur mit einem Exitcode endet. Bricht er
+  ab, schreibt er vorher eine Zeile in Klartext ins Protokoll: was nicht ging,
+  warum, und was als Nächstes zu tun ist. Eine einzelne Datei, die gerade
+  nicht lesbar ist (etwa weil Google Drive sie noch lädt), darf nie den
+  ganzen Lauf stoppen: überspringen, im Protokoll nennen, beim nächsten Lauf
+  wieder versuchen.
 
 ## Was du mich fragen musst
 
