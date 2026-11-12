@@ -91,5 +91,5 @@ try {
     if ($gesichert.Count) { Write-Output 'Eigene Änderungen gesichert, bevor sie überschrieben wurden:'; $gesichert | ForEach-Object { "  $_" } }
 }
 finally {
-    if (Test-Path $temp) { Remove-Item -Recurse -Force -Path $temp }
+    if (Test-Path $temp) { Remove-Item -Recurse -Force -Path $temp -ErrorAction SilentlyContinue }
 }

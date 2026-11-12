@@ -107,7 +107,9 @@ function Melden([string]$Titel, [string]$Text) {
     try {
         [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
         $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
-        $xml.LoadXml("<toast><visual><binding template='ToastGeneric'><text>$Titel</text><text>$Text</text></binding></visual></toast>")
+        $xml.LoadXml("<toast><visual><binding template='ToastGeneric'><text></text><text></text></binding></visual></toast>")
+        $xml.SelectSingleNode('/toast/visual/binding/text[1]').AppendChild($xml.CreateTextNode($Titel)) | Out-Null
+        $xml.SelectSingleNode('/toast/visual/binding/text[2]').AppendChild($xml.CreateTextNode($Text)) | Out-Null
         [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('Windows PowerShell').Show([Windows.UI.Notifications.ToastNotification]::new($xml))
     }
     catch { Add-Content -Path $mitteilungslog -Value "${jetzt} MITTEILUNG FEHLGESCHLAGEN: ${Titel}: $Text" }

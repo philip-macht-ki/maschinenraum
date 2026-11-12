@@ -1,4 +1,4 @@
-# Einrichten lassen: ein Wächter für alle deine Jobs
+﻿# Einrichten lassen: ein Wächter für alle deine Jobs
 
 **Wofür:** Ein Wächter schaut jeden Morgen über alle deine Laufanzeigen und
 deine launchd-Jobs und meldet sich per Mac-Mitteilung nur, wenn etwas fehlt
@@ -95,4 +95,4 @@ der Wächter von selbst, und du siehst den Grund in einer Datei.
 
 ## Unter Windows
 
-Der Wächter heißt `werkzeuge\\waechter.ps1` und prüft Aufgaben aus der Windows-Aufgabenplanung statt launchd. Seine Meldung ist ein PowerShell-Toast ohne Zusatzmodul. Plane ihn mit `vorlagen/aufgabenplanung/job.xml.vorlage`; die Aufgabe läuft nur beim angemeldeten Benutzer und holt verpasste Läufe nach.
+Der Wächter heißt `werkzeuge\\waechter.ps1` und prüft Aufgaben aus der Windows-Aufgabenplanung statt launchd. Seine Meldung ist ein PowerShell-Toast ohne Zusatzmodul. Plane ihn mit `vorlagen/aufgabenplanung/job.xml.vorlage` und registriere sie ausschließlich über `werkzeuge\\aufgabe-anlegen.ps1`; die Aufgabe läuft nur beim angemeldeten Benutzer und holt verpasste Läufe nach.

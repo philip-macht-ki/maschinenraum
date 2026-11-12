@@ -1,14 +1,13 @@
-﻿<# Startet einen Befehl, schreibt Log und Laufanzeige. Aufruf: lauf.ps1 <name> -- <befehl> [argumente] #>
+﻿<# Startet ein Skript, schreibt Log und Laufanzeige. Aufruf: lauf.ps1 -Name <name> -Skript <pfad> #>
 [CmdletBinding()]
 param(
-    [Parameter(Position = 0)] [string]$Name,
-    [Parameter(ValueFromRemainingArguments = $true)] [string[]]$Befehl
+    [Parameter(Mandatory = $true)] [string]$Name,
+    [Parameter(Mandatory = $true)] [string]$Skript
 )
 
 $ErrorActionPreference = 'Stop'
-if ([string]::IsNullOrWhiteSpace($Name) -or -not $Befehl) {
-    # PowerShell reserviert -- für seine eigene Parameterverarbeitung.
-    [Console]::Error.WriteLine('Aufruf: lauf.ps1 <name> <befehl> [argumente] (das Shell-Trennzeichen -- wird in PowerShell nicht verwendet)')
+if ([string]::IsNullOrWhiteSpace($Name) -or [string]::IsNullOrWhiteSpace($Skript)) {
+    [Console]::Error.WriteLine('Aufruf: lauf.ps1 -Name <name> -Skript <pfad>')
     exit 2
 }
 if ($Name -notmatch '^[A-Za-z0-9._-]+$') {
@@ -36,17 +35,20 @@ New-Item -ItemType File -Force -Path $anzeige | Out-Null
 
 $log = Join-Path $logs "$Name.log"
 $stempel = Get-Date -Format 'yyyy-MM-dd HH:mm'
-Add-Content -Path $log -Value "=== $stempel START: $($Befehl -join ' ') ==="
+Add-Content -Path $log -Value "=== $stempel START: Job $Name, Skript $(Split-Path $Skript -Leaf) ==="
+function Schuetzen([string]$Text) {
+    if ($null -eq $Text) { return '' }
+    $Text = $Text -replace '\bsk-[A-Za-z0-9_-]+', '[MASKIERT]'
+    $Text = $Text -replace '(?i)\bBearer\s+[A-Za-z0-9._~+/-]+=*', 'Bearer [MASKIERT]'
+    return $Text -replace '(?i)\b(api[_-]?key|token|secret|password)\s*[:=]\s*\S+', '$1=[MASKIERT]'
+}
 try {
-    $programm = $Befehl[0]
-    $argumente = @()
-    if ($Befehl.Count -gt 1) { $argumente = $Befehl[1..($Befehl.Count - 1)] }
-    & $programm @argumente *>> $log
+    & $Skript *>> $log
     $rc = $LASTEXITCODE
     if ($null -eq $rc) { $rc = 0 }
 }
 catch {
-    Add-Content -Path $log -Value $_.Exception.Message
+    Add-Content -Path $log -Value (Schuetzen $_.Exception.Message)
     $rc = 1
 }
 
@@ -54,7 +56,8 @@ if ($rc -eq 0) {
     Add-Content -Path $anzeige -Value "$stempel | $Name | OK"
 }
 else {
-    $letzteZeile = Get-Content -Path $log -Tail 1 -ErrorAction SilentlyContinue
+    $letzteZeile = Schuetzen (Get-Content -Path $log -Tail 1 -ErrorAction SilentlyContinue)
+    if ($letzteZeile.Length -gt 200) { $letzteZeile = $letzteZeile.Substring(0, 200) }
     Add-Content -Path $anzeige -Value "${stempel} | $Name | FEHLER | Exitcode ${rc}: $letzteZeile"
 }
 exit $rc
