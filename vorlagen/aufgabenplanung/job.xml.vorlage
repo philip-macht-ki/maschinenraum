@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Windows-Aufgabenplanung. Platzhalter wie in launchd/job.plist.vorlage:
+  {{NAME}}, {{JOBSKRIPT}}, {{ARBEITSORDNER}}, {{STUNDE}}, {{MINUTE}}, {{HOME}}.
+  Die Aufgabe läuft nur im angemeldeten Benutzerkonto. StartWhenAvailable
+  holt einen verpassten Lauf nach. Vor dem Import mit schtasks /create die
+  Werte sicher per XML-API oder einer sicheren Ersetzung einsetzen.
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo><URI>\maschinenraum\{{NAME}}</URI></RegistrationInfo>
+  <Triggers><CalendarTrigger><StartBoundary>2026-01-01T{{STUNDE}}:{{MINUTE}}:00</StartBoundary><ScheduleByDay><DaysInterval>1</DaysInterval></ScheduleByDay></CalendarTrigger></Triggers>
+  <Principals><Principal id="Author"><LogonType>InteractiveToken</LogonType><RunLevel>LeastPrivilege</RunLevel></Principal></Principals>
+  <Settings><StartWhenAvailable>true</StartWhenAvailable><MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy><DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries><StopIfGoingOnBatteries>false</StopIfGoingOnBatteries><Enabled>true</Enabled></Settings>
+  <Actions Context="Author"><Exec><Command>powershell.exe</Command><Arguments>-NoProfile -ExecutionPolicy Bypass -File &quot;{{HOME}}\maschinenraum\werkzeuge\lauf.ps1&quot; {{NAME}} -- &quot;{{JOBSKRIPT}}&quot;</Arguments><WorkingDirectory>{{ARBEITSORDNER}}</WorkingDirectory></Exec></Actions>
+</Task>

@@ -110,3 +110,7 @@ Du hast jetzt einen zweiten Agenten mit eigenem Guthaben, den dein Claude für
 Fleißarbeit einspannen kann, ohne dass dessen Rohausgabe dein Gespräch
 sprengt. Was er tut, steht kurz gefasst in deiner Antwort, das volle
 Protokoll liegt daneben, falls du es je brauchst.
+
+## Unter Windows
+
+Öffne PowerShell. Installiere die Codex-CLI dort mit dem offiziellen Windows-Installer oder `winget`, nicht mit Homebrew. Danach ist `codex` in einer neu geöffneten PowerShell erreichbar. Lege `codex-do` unter `%USERPROFILE%\\.local\\bin` ab und rufe die Windows-Werkzeuge als `.ps1` auf.

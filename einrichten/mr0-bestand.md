@@ -108,3 +108,7 @@ Du hast eine eigene Kopie des Werkzeugkastens auf deinem Rechner, und eine
 Datei, die zeigt, was du schon hast und was noch fehlt. Jede weitere Lektion
 baut darauf auf, ohne dass du dich erinnern musst, was du schon eingerichtet
 hast.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

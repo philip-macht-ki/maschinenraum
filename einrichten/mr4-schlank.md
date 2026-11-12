@@ -80,3 +80,7 @@ Grundausstattung mitzuschleppen. Das macht eigene Automatisierungen
 schneller und günstiger. Übernimm die schlanke Fassung nur dort, wo du an
 deiner eigenen Aufgabe geprüft hast, dass die Antwort ausreicht und sich
 der gemessene Unterschied lohnt.
+
+## Unter Windows
+
+Nutze PowerShell und die `.ps1`-Fassung von `lauf`. Für einen Zeitplan verwendest du die Aufgabenplanung statt launchd, mit `vorlagen/aufgabenplanung/job.xml.vorlage`. Sie läuft im angemeldeten Benutzerkonto und holt verpasste Läufe nach.

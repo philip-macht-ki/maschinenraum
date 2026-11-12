@@ -76,3 +76,7 @@ Kurz:
 Eine lange Logdatei oder eine Recherche mit vielen offenen Browser-Tabs muss
 nicht mehr deine Hauptsitzung füllen. Du gibst die Aufgabe einem der beiden
 Helfer und bekommst nur zurück, was du wirklich wissen wolltest.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

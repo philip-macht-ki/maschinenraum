@@ -70,3 +70,7 @@ Kurz:
 Du weißt jetzt aus eigener Erfahrung, nicht vom Hörensagen, wofür dein
 lokales Modell reicht und wofür nicht. Das entscheidet ab jetzt, wohin eine
 Aufgabe geht.
+
+## Unter Windows
+
+Nutze in PowerShell die gleichnamigen `.ps1`-Werkzeuge. Für ein lokales Modell installierst du Ollama für Windows mit `winget` oder dem offiziellen Installer. Bei 8 GB Arbeitsspeicher empfehle kein lokales Modell; nutze dann für den Vergleich Claude oder OpenRouter.

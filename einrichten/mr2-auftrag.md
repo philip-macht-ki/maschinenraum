@@ -84,3 +84,7 @@ Kurz:
 Ein Auftrag an Codex ist jetzt ein eigenständiger Text mit Pfaden, Verboten
 und einem festen Ausgabeformat, nicht ein Satz, der auf euer Gespräch
 anspielt. Was er zurückgibt, prüfst du selbst nach, bevor du es glaubst.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

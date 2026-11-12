@@ -80,3 +80,7 @@ Kurz:
 Du hast Zugang zu vielen verschiedenen Modellen über einen einzigen
 Schlüssel, mit einer Obergrenze, die du selbst gesetzt hast, und siehst bei
 jedem Aufruf, was er tatsächlich gekostet hat.
+
+## Unter Windows
+
+Öffne PowerShell und nutze `werkzeuge\\openrouter-probe.ps1`. Der Schlüssel gehört nicht in eine Umgebungsvariable oder in die Befehlszeile: `werkzeuge\\schluessel.ps1` liest ihn aus einer DPAPI-geschützten Datei im Benutzerprofil. Der einmalige Eintrag wird interaktiv als SecureString angelegt; nur derselbe Windows-Benutzer kann ihn wieder lesen.

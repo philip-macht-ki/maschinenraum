@@ -72,3 +72,7 @@ Du hast eine eigene, ehrliche Übersicht, was dich dein Betrieb im Monat
 kostet, und eine Faustregel, wann sich eine Aufgabe an einen anderen
 Helfer lohnt. Deinen tatsächlichen Verbrauch rufst du jederzeit mit einem
 Satz ab.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

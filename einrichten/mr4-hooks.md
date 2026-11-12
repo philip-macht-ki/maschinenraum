@@ -172,3 +172,7 @@ Jede neue Sitzung beginnt jetzt von selbst mit dem, was seit der letzten
 Sitzung in deiner Laufanzeige neu passiert ist, du musst nicht mehr danach
 fragen. Bleibt die Meldung aus, ist seither kein Job schiefgegangen - und
 ein längst gezeigter alter Fehler taucht nicht wieder auf.
+
+## Unter Windows
+
+Claude Code führt Shell-Hooks unter Windows über Git Bash aus. Prüfe deshalb vorhandene `.sh`-Hooks mit Git Bash und nutze deren Unix-Pfade. Alternativ rufst du die PowerShell-Fassung ausdrücklich auf, zum Beispiel als Command in `settings.json`: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%USERPROFILE%\\.claude\\hooks\\sitzungsstart.ps1"`. Claude-Dateien liegen unter `%USERPROFILE%\\.claude`.

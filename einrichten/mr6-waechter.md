@@ -92,3 +92,7 @@ Kurz:
 Du musst nicht mehr selbst nachsehen, ob in der Nacht etwas schiefgegangen
 ist. Bleibt ein Job stehen oder läuft er seltener als erwartet, meldet sich
 der Wächter von selbst, und du siehst den Grund in einer Datei.
+
+## Unter Windows
+
+Der Wächter heißt `werkzeuge\\waechter.ps1` und prüft Aufgaben aus der Windows-Aufgabenplanung statt launchd. Seine Meldung ist ein PowerShell-Toast ohne Zusatzmodul. Plane ihn mit `vorlagen/aufgabenplanung/job.xml.vorlage`; die Aufgabe läuft nur beim angemeldeten Benutzer und holt verpasste Läufe nach.

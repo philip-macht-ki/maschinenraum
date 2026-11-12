@@ -185,3 +185,7 @@ Kurz:
 Ein Job läuft jetzt auch, wenn du die App zugemacht hast und dein Mac
 schläft nicht dazwischen. Du siehst in einer einzigen Datei, ob er
 geglückt ist, ohne im Terminal nachsehen zu müssen.
+
+## Unter Windows
+
+Statt launchd verwendest du die Windows-Aufgabenplanung. Die Vorlage liegt in `vorlagen/aufgabenplanung/job.xml.vorlage`. Ersetze ihre Platzhalter und importiere sie erst nach deiner Erlaubnis mit `schtasks /create /tn "\\maschinenraum\\<name>" /xml <datei>`. Sie läuft nur beim angemeldeten Benutzer und `StartWhenAvailable` holt verpasste Läufe nach. Das Jobskript ist eine `.ps1`; der Aufruf läuft über `werkzeuge\\lauf.ps1`. Prüfe vor dem Import die XML-Struktur und löse den Testlauf mit `schtasks /run /tn "\\maschinenraum\\<name>"` aus.

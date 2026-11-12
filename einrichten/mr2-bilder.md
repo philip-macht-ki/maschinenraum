@@ -74,3 +74,7 @@ Ein Bild entsteht nicht mehr nebenbei und ungesehen. Du bekommst eine
 Beschreibung von dem, was tatsächlich auf dem Bild ist, bevor du es
 irgendwo einsetzt, und weißt, dass am Ende eines größeren Baus noch einmal
 gegengeprüft wird.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

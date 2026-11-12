@@ -41,6 +41,16 @@ Sitzung läuft auf dem Rechner, der dauerhaft läuft, etwa über die
 SSH-Umgebung der Claude-App, über Remote Control oder die
 Bildschirmfreigabe von macOS.
 
+## Mac oder Windows
+
+Der Werkzeugkasten funktioniert auf macOS und Windows 11. Auf dem Mac gelten
+die beschriebenen Shell-Skripte, Homebrew und launchd. Unter Windows öffnest
+du PowerShell, nutzt die gleichnamigen `.ps1`-Werkzeuge, `winget` statt
+Homebrew und die Aufgabenplanung statt launchd. Windows-Dateien von Claude
+liegen unter `%USERPROFILE%\\.claude`; die Aufgabenplanung läuft nur beim
+angemeldeten Benutzer und holt verpasste Läufe nach. Die jeweilige
+Einrichtungsdatei hat einen kurzen Abschnitt „Unter Windows“.
+
 ## Ein Blick auf den Stand
 
 `pruefen.sh` zeigt eine Ampel: was schon eingerichtet ist, was fehlt, was

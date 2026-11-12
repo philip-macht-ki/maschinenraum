@@ -106,3 +106,7 @@ kostet, dann eine Sandbox-, Validate- oder lokale Schemaprüfung ohne echten
 Aufruf, erst dann Geld ausgeben, und zwar bewusst als Probeaufruf mit
 genannter Höchstgrenze. Das verhindert den Fehler, dass ein vermeintlicher
 Testaufruf trotzdem einen bezahlten Auftrag auslöst.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

@@ -69,3 +69,7 @@ Kurz:
 Jede neue Sitzung fragt jetzt von selbst zuerst deine Karte, bevor sie
 anfängt, Dateien zu durchsuchen. Das spart Zeit und Kontext, in jedem
 Projekt, das eine Karte hat.
+
+## Unter Windows
+
+Die globale Claude-Datei liegt unter `%USERPROFILE%\\.claude\\CLAUDE.md`. Installiere graphify über `uv` in PowerShell; `uv` kommt über den offiziellen Windows-Installer oder `winget`, nicht über Homebrew.

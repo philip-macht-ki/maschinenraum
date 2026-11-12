@@ -83,3 +83,7 @@ Zum Schluss führst du sie wirklich aus, du behauptest sie nicht:
 Zum Schluss in zwei Sätzen: was jetzt anders ist, und wann du die SOP
 fortschreibst.
 ```
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

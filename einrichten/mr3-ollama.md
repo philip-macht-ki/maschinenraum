@@ -77,3 +77,7 @@ Kurz:
 Du hast ein Modell, das ganz auf deinem Rechner arbeitet. Für Vertrauliches
 ist das die richtige Wahl, für alles andere bleibt dein Claude-Abo die
 bessere.
+
+## Unter Windows
+
+Ermittle den Arbeitsspeicher mit `(Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory` und teile durch 1 GB. Installiere Ollama für Windows von der offiziellen Ollama-Seite oder mit `winget`, nicht mit Homebrew. Bei 8 GB Arbeitsspeicher empfiehlt diese Lektion ausdrücklich kein lokales Modell. Ab 16 GB gelten dieselben vorsichtigen Modellgrößen wie oben.
