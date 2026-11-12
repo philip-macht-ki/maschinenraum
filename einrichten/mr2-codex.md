@@ -113,21 +113,4 @@ Protokoll liegt daneben, falls du es je brauchst.
 
 ## Unter Windows
 
-Öffne PowerShell. Installiere die Codex-CLI dort mit dem offiziellen
-Windows-Installer oder `winget`, nicht mit Homebrew. Danach ist `codex` in
-einer neu geöffneten PowerShell erreichbar. Lege den Ordner
-`%USERPROFILE%\\.local\\bin` bei Bedarf an und kopiere
-`vorlagen\\codex\\codex-do.ps1` dorthin:
-
-```powershell
-New-Item -ItemType Directory -Force "$env:USERPROFILE\\.local\\bin"
-Copy-Item .\\vorlagen\\codex\\codex-do.ps1 "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"
-```
-
-Danach funktioniert der Probeaufruf in PowerShell so:
-
-```powershell
-@'
-Antworte nur mit dem Wort "bereit".
-'@ | & "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"
-```
+Öffne PowerShell. Installiere die Codex-CLI dort mit dem offiziellen Windows-Installer oder `winget`, nicht mit Homebrew. Danach ist `codex` in einer neu geöffneten PowerShell erreichbar. Lege den Ordner `%USERPROFILE%\\.local\\bin` bei Bedarf an und kopiere `vorlagen\\codex\\codex-do.ps1` dorthin. Der Probeaufruf läuft in PowerShell über `& "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"`.

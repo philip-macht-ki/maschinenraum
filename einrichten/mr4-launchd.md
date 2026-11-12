@@ -1,4 +1,4 @@
-﻿# Einrichten lassen: ein Job, der ohne App läuft
+# Einrichten lassen: ein Job, der ohne App läuft
 
 **Wofür:** Ein echter launchd-Job, der auch läuft, wenn die Claude-App zu
 ist. Das Werkzeug `lauf.sh` sorgt dafür, dass der Job denselben PATH

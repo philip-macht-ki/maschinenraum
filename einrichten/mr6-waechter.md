@@ -1,4 +1,4 @@
-﻿# Einrichten lassen: ein Wächter für alle deine Jobs
+# Einrichten lassen: ein Wächter für alle deine Jobs
 
 **Wofür:** Ein Wächter schaut jeden Morgen über alle deine Laufanzeigen und
 deine launchd-Jobs und meldet sich per Mac-Mitteilung nur, wenn etwas fehlt
