@@ -110,3 +110,16 @@ Du hast jetzt einen zweiten Agenten mit eigenem Guthaben, den dein Claude für
 Fleißarbeit einspannen kann, ohne dass dessen Rohausgabe dein Gespräch
 sprengt. Was er tut, steht kurz gefasst in deiner Antwort, das volle
 Protokoll liegt daneben, falls du es je brauchst.
+
+## Unter Windows
+
+Öffne PowerShell. Installiere die Codex-CLI dort mit dem offiziellen Windows-Installer oder `winget`, nicht mit Homebrew. Danach ist `codex` in einer neu geöffneten PowerShell erreichbar. Lege den Ordner `%USERPROFILE%\\.local\\bin` bei Bedarf an und kopiere `vorlagen\\codex\\codex-do.ps1` dorthin. Der Probeaufruf läuft in PowerShell über `& "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"`.
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\\.local\\bin"
+Copy-Item .\\vorlagen\\codex\\codex-do.ps1 "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"
+
+@'
+Antworte nur mit dem Wort "bereit".
+'@ | & "$env:USERPROFILE\\.local\\bin\\codex-do.ps1"
+```

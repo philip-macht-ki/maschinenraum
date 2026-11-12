@@ -1,4 +1,4 @@
-# Einrichten lassen: eine Karte über alle deine Projekte
+﻿# Einrichten lassen: eine Karte über alle deine Projekte
 
 **Wofür:** Du hast schon die Karte eines einzelnen Projektordners. Diese
 Lektion macht daraus eine Karte über mehrere Ordner: nach jedem Commit
@@ -119,3 +119,7 @@ Kurz:
 Deine Karte wächst jetzt von selbst mit, in jedem deiner Projekte, nicht nur
 in einem. Ein Commit zeichnet seine eigene Karte sofort nach, und einmal pro
 Nacht holt ein Sammellauf alles nach, was dabei liegen geblieben ist.
+
+## Unter Windows
+
+Installiere `uv` mit dem offiziellen Windows-Installer oder `winget`, nicht mit Homebrew, und richte graphify danach über `uv tool` ein. Für den Nachtlauf verwendest du die Aufgabenplanung mit `vorlagen/aufgabenplanung/job.xml.vorlage` statt launchd und registrierst sie ausschließlich über `werkzeuge\\aufgabe-anlegen.ps1`. Sie läuft im angemeldeten Benutzerkonto und holt verpasste Läufe nach.

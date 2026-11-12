@@ -64,3 +64,7 @@ Kurz:
 Ein bezahlter Aufruf passiert nicht mehr nebenbei. Du bekommst vorher eine
 Zahl genannt und musst zustimmen, und Vertrauliches bleibt von Anfang an auf
 deinem eigenen Rechner.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

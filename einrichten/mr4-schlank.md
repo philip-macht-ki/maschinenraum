@@ -1,4 +1,4 @@
-# Einrichten lassen: Claude im Skript, schlank
+﻿# Einrichten lassen: Claude im Skript, schlank
 
 **Wofür:** Ruft ein Skript Claude im Hintergrund auf (`claude -p`), lädt das
 normalerweise seine ganze Grundausstattung mit, Werkzeuge, Verbindungen,
@@ -80,3 +80,7 @@ Grundausstattung mitzuschleppen. Das macht eigene Automatisierungen
 schneller und günstiger. Übernimm die schlanke Fassung nur dort, wo du an
 deiner eigenen Aufgabe geprüft hast, dass die Antwort ausreicht und sich
 der gemessene Unterschied lohnt.
+
+## Unter Windows
+
+Nutze PowerShell und die `.ps1`-Fassung von `lauf`. Für einen Zeitplan verwendest du die Aufgabenplanung statt launchd, mit `vorlagen/aufgabenplanung/job.xml.vorlage`; registriere sie ausschließlich per `werkzeuge\\aufgabe-anlegen.ps1`. Sie läuft im angemeldeten Benutzerkonto und holt verpasste Läufe nach.

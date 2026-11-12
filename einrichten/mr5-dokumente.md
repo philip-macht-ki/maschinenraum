@@ -72,3 +72,7 @@ Kurz:
 Deine Karte kennt jetzt nicht nur Code, sondern auch, was in deinen eigenen
 Notizen und PDFs steht. Eine Frage, die vorher nur durch Nachlesen zu
 beantworten war, findet jetzt sofort eine Fundstelle.
+
+## Unter Windows
+
+Installiere `uv` mit dem offiziellen Windows-Installer oder `winget`, nicht mit Homebrew. Danach installierst und startest du graphify in PowerShell über `uv tool`. Pfade unter Claude liegen bei `%USERPROFILE%\\.claude`.

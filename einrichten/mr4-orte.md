@@ -1,4 +1,4 @@
-# Einrichten lassen: die richtigen Orte für deine Zeitpläne
+﻿# Einrichten lassen: die richtigen Orte für deine Zeitpläne
 
 **Wofür:** Jeder wiederkehrende Job läuft an einem von drei Orten:
 Cloud-Routine (läuft ohne deinen Mac, sieht deine Dateien nicht),
@@ -86,3 +86,7 @@ Rate nichts. Wo du unsicher bist, frag.
 Jede deiner wiederkehrenden Aufgaben hat jetzt einen begründeten Platz,
 statt einfach dort zu landen, wo es gerade am einfachsten war. Das nächste
 Mal, wenn du einen neuen Job einrichtest, schaust du erst in diese Tabelle.
+
+## Unter Windows
+
+Die drei Orte heißen unter Windows Cloud-Routine, Desktop-Routine und Aufgabenplanung statt launchd. Eine Cloud-Routine ist der einzige Weg, der auch ohne eingeschalteten Rechner läuft. Sie sieht dabei nur eine frische Repo-Kopie, keine lokalen Ordner. Für lokale Dateien nutze die Aufgabenplanung auf genau einem angemeldeten Windows-Rechner. Ihre Vorlage liegt unter `vorlagen/aufgabenplanung/job.xml.vorlage`, wird ausschließlich mit `werkzeuge\\aufgabe-anlegen.ps1` registriert und nutzt `StartWhenAvailable` für verpasste Läufe.

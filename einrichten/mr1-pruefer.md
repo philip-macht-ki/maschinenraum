@@ -65,3 +65,7 @@ Kurz:
 Ein „erledigt" ist ab jetzt eine Behauptung, keine Tatsache, bis sie
 nachgeprüft ist. Der Prüfer macht diese Gegenprobe, ohne dass du selbst jede
 Datei und jeden Test durchgehen musst.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

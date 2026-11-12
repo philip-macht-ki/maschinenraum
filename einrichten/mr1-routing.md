@@ -79,3 +79,7 @@ Kurz:
 Claude überlegt nicht mehr mitten im Text, wer eine Aufgabe übernehmen
 sollte, sondern sagt es dir in einem Satz, bevor er anfängt. Das spart dir
 Lesezeit und ihm Kontext, den er sonst fürs Abwägen verbraucht hätte.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

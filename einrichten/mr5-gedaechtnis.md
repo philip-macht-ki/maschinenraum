@@ -78,3 +78,7 @@ Kurz:
 Was du einmal sagst, muss du nicht mehr wiederholen. Eine neue Sitzung in
 diesem Projekt kennt es schon, weil es in einer eigenen Datei steht, nicht
 nur in deiner Erinnerung an das Gespräch.
+
+## Unter Windows
+
+Öffne für diese Schritte PowerShell. Dein Benutzerordner heißt dort `%USERPROFILE%`; Claude-Dateien liegen zum Beispiel unter `%USERPROFILE%\\.claude`. Wenn ein Werkzeug einen Befehl ausführt, nimm die gleichnamige `.ps1`-Datei neben der Mac-Fassung. Die Mac-Schritte gelten unverändert weiter nur für macOS.

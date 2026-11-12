@@ -185,3 +185,7 @@ Kurz:
 Ein Job läuft jetzt auch, wenn du die App zugemacht hast und dein Mac
 schläft nicht dazwischen. Du siehst in einer einzigen Datei, ob er
 geglückt ist, ohne im Terminal nachsehen zu müssen.
+
+## Unter Windows
+
+Statt launchd verwendest du die Windows-Aufgabenplanung. Die Vorlage liegt in `vorlagen/aufgabenplanung/job.xml.vorlage`. Lege oder aktualisiere sie erst nach deiner Erlaubnis ausschließlich mit `werkzeuge\\aufgabe-anlegen.ps1` an: `./werkzeuge/aufgabe-anlegen.ps1 -Name "\\maschinenraum\\<name>" -Werte @{ NAME = '<name>'; JOBSKRIPT = 'C:\\Pfad\\job.ps1'; ARBEITSORDNER = 'C:\\Pfad\\arbeit'; STUNDE = '08'; MINUTE = '30'; HOME = $env:USERPROFILE }`. Das Skript ersetzt Platzhalter XML-sicher und registriert die Aufgabe direkt; `-Trocken` gibt zuvor das fertige XML aus. Zum Entfernen nutze `-Entfernen`. Sie läuft nur beim angemeldeten Benutzer und `StartWhenAvailable` holt verpasste Läufe nach. Das Jobskript ist eine `.ps1`; der Aufruf läuft über `werkzeuge\\lauf.ps1 -Name ... -Skript ...`. Löse den Testlauf mit `Start-ScheduledTask -TaskName "\\maschinenraum\\<name>"` aus.
