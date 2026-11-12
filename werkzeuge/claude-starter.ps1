@@ -1,4 +1,12 @@
-<# Prueft die Claude-CLI unter Windows. Die offizielle Installation erfolgt mit winget oder dem Claude-Installer. #>
-[CmdletBinding()] param()
-if (Get-Command claude -ErrorAction SilentlyContinue) { Write-Output "claude ist schon da: $((Get-Command claude).Source)"; exit 0 }
-Write-Error 'claude fehlt. Installiere Claude Code unter Windows mit dem offiziellen Installer oder winget und starte PowerShell danach neu.'; exit 127
+﻿<# Prüft die Claude-CLI unter Windows; der macOS-App-Starter hat kein Windows-Gegenstück. #>
+[CmdletBinding()]
+param()
+
+$claude = Get-Command 'claude' -ErrorAction SilentlyContinue
+if ($claude) {
+    Write-Output "claude ist schon da: $($claude.Source)"
+    exit 0
+}
+
+[Console]::Error.WriteLine('claude fehlt. Unter Windows gibt es keinen App-Starter wie unter macOS; installiere Claude Code mit dem offiziellen Installer oder winget und starte PowerShell danach neu.')
+exit 127
